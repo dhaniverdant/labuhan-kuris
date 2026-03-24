@@ -165,7 +165,7 @@ export default function Page() {
               Selamat Datang Di
             </p>
 
-            <h1 className="mt-3 text-4xl font-bold leading-none sm:text-5xl md:text-7xl lg:text-7xl">
+            <h1 className="mt-3 text-3xl font-bold leading-none sm:text-5xl md:text-7xl lg:text-7xl">
               Desa Labuhan Kuris
             </h1>
 
