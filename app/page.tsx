@@ -103,11 +103,11 @@ export default function Page() {
               />
             </div>
           ))}
-          <div className="absolute inset-0 bg-black/15" />
+          <div className="absolute inset-0 bg-black/5" />
           <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-black/20" />
         </div>
 
-        <header className="absolute left-0 top-0 z-30 w-full">
+        <header className="fixed left-0 top-0 z-30 w-full md:absolute">
           <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between rounded-full border border-white/20 bg-black/20 px-4 py-3 text-white backdrop-blur md:px-6">
               <a href="#beranda" className="text-base font-bold tracking-wide md:text-lg">
@@ -165,7 +165,7 @@ export default function Page() {
               Selamat Datang Di
             </p>
 
-            <h1 className="mt-3 text-5xl font-bold leading-none sm:text-6xl md:text-7xl lg:text-7xl">
+            <h1 className="mt-3 text-5xl font-bold leading-none sm:text-5xl md:text-7xl lg:text-7xl">
               Desa Labuhan Kuris
             </h1>
 
