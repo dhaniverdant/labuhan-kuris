@@ -7,19 +7,22 @@ const heroSlides = [
     title: 'Panorama Sejangan',
     subtitle:
       'Pemandangan alam pesisir yang memperlihatkan keindahan khas Desa Labuhan Kuris.',
-    image: '/images/sejangan.JPG',
+    desktopImage: '/images/sejangan.JPG',
+    mobileImage: '/images/mobile/sejangan-mobile.JPG',
+  },
+  {
+    title: 'Keindahan Sawah Desa',
+    subtitle:
+      'Sudut alam yang memperlihatkan kekayaan panorama pertanian Desa Labuhan Kuris.',
+    desktopImage: '/images/sawah.JPG',
+    mobileImage: '/images/mobile/sawah-mobile.JPG',
   },
   {
     title: 'Pesona Dangar Rea',
     subtitle:
       'Lanskap alam yang memperkuat daya tarik wisata desa dan cocok ditampilkan di halaman utama.',
-    image: '/images/dangar-rea.jpg',
-  },
-  {
-    title: 'Keindahan Selat Buta',
-    subtitle:
-      'Sudut alam yang memperlihatkan kekayaan panorama bahari Desa Labuhan Kuris.',
-    image: '/images/selat-buta.JPG',
+    desktopImage: '/images/dangar-rea.jpg',
+    mobileImage: '/images/mobile/dangar-rea-mobile.jpg',
   },
 ];
 
@@ -81,20 +84,27 @@ export default function Page() {
     <main className="min-h-screen bg-slate-50 text-slate-800">
       <section
         id="beranda"
-        className="relative min-h-screen min-h-[100svh] overflow-hidden"
+        className="relative min-h-screen overflow-hidden"
       >
         <div className="absolute inset-0">
           {heroSlides.map((slide, index) => (
-            <div
-              key={slide.title}
-              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
-                index === currentSlide ? 'opacity-100' : 'opacity-0'
-              }`}
-              style={{ backgroundImage: `url(${slide.image})` }}
-            />
+            <div key={slide.title} className="absolute inset-0">
+              <div
+                className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 md:block ${
+                  index === currentSlide ? 'opacity-100' : 'opacity-0'
+                } hidden`}
+                style={{ backgroundImage: `url(${slide.desktopImage})` }}
+              />
+              <div
+                className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 md:hidden ${
+                  index === currentSlide ? 'opacity-100' : 'opacity-0'
+                }`}
+                style={{ backgroundImage: `url(${slide.mobileImage})` }}
+              />
+            </div>
           ))}
-          <div className="absolute inset-0 bg-black/55" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
+          <div className="absolute inset-0 bg-black/15" />
+          <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-black/20" />
         </div>
 
         <header className="absolute left-0 top-0 z-30 w-full">
@@ -149,7 +159,7 @@ export default function Page() {
           </div>
         </header>
 
-        <div className="relative z-10 mx-auto flex min-h-screen min-h-[100svh] max-w-7xl items-center px-6 py-24 lg:px-8">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6 py-24 lg:px-8">
           <div className="max-w-3xl text-white">
             <p className="text-sm font-semibold uppercase tracking-[0.4em] text-white/80 md:text-base">
               Selamat Datang Di
@@ -244,7 +254,7 @@ export default function Page() {
               key={item.title}
               className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="mb-4 h-44 rounded-2xl bg-gradient-to-br from-sky-100 via-cyan-50 to-emerald-100" />
+              <div className="mb-4 h-44 rounded-2xl bg-linear-to-br from-sky-100 via-cyan-50 to-emerald-100" />
               <h3 className="text-xl font-bold">{item.title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-600">{item.desc}</p>
               <button className="mt-5 text-sm font-semibold text-sky-700">Baca Detail →</button>
@@ -274,7 +284,7 @@ export default function Page() {
       </section>
 
       <section id="pertanian" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="rounded-[2rem] bg-slate-900 px-6 py-10 text-white md:px-10">
+        <div className="rounded-4xl bg-slate-900 px-6 py-10 text-white md:px-10">
           <div className="grid gap-8 lg:grid-cols-2">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-300">Potensi Pertanian</p>
@@ -312,7 +322,7 @@ export default function Page() {
       </section>
 
       <section id="kontak" className="mx-auto max-w-7xl px-6 pb-20 pt-6 lg:px-8">
-        <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
+        <div className="rounded-4xl border border-slate-200 bg-white p-8 shadow-sm">
           <h2 className="text-2xl font-bold">Kontak Desa</h2>
           <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
             Tambahkan alamat kantor desa, nomor telepon, email, media sosial, dan peta lokasi pada
