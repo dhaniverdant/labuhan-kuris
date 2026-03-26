@@ -89,7 +89,7 @@ function HeroPicture({
     src: slide.desktopImage,
     width: 1600,
     height: 900,
-    quality: 85,
+    quality: 75,
   });
 
   const {
