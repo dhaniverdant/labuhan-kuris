@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { getImageProps } from 'next/image';
 
 const heroSlides = [
   {
@@ -62,6 +63,60 @@ const navItems = [
   { label: 'Kontak', href: '#kontak' },
 ];
 
+type HeroSlide = {
+  title: string;
+  subtitle: string;
+  desktopImage: string;
+  mobileImage: string;
+};
+
+function HeroPicture({
+  slide,
+  eager = false,
+}: {
+  slide: HeroSlide;
+  eager?: boolean;
+}) {
+  const common = {
+    alt: slide.title,
+    sizes: '100vw',
+  };
+
+  const {
+    props: { srcSet: desktopSrcSet },
+  } = getImageProps({
+    ...common,
+    src: slide.desktopImage,
+    width: 1600,
+    height: 900,
+    quality: 85,
+  });
+
+  const {
+    props: { srcSet: mobileSrcSet, ...imgProps },
+  } = getImageProps({
+    ...common,
+    src: slide.mobileImage,
+    width: 1080,
+    height: 1350,
+    quality: 75,
+  });
+
+  return (
+    <picture className="absolute inset-0">
+      <source media="(max-width: 767px)" srcSet={mobileSrcSet} />
+      <source media="(min-width: 768px)" srcSet={desktopSrcSet} />
+      <img
+        {...imgProps}
+        loading={eager ? 'eager' : 'lazy'}
+        fetchPriority={eager ? 'high' : 'auto'}
+        className="h-full w-full object-cover"
+        alt='slider image'
+      />
+    </picture>
+  );
+}
+
 export default function Page() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -70,7 +125,7 @@ export default function Page() {
   useEffect(() => {
     const interval = window.setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 4000);
+    }, 5000);
 
     return () => window.clearInterval(interval);
   }, []);
@@ -87,23 +142,11 @@ export default function Page() {
         className="relative min-h-screen overflow-hidden"
       >
         <div className="absolute inset-0">
-          {heroSlides.map((slide, index) => (
-            <div key={slide.title} className="absolute inset-0">
-              <div
-                className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 md:block ${
-                  index === currentSlide ? 'opacity-100' : 'opacity-0'
-                } hidden`}
-                style={{ backgroundImage: `url(${slide.desktopImage})` }}
-              />
-              <div
-                className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 md:hidden ${
-                  index === currentSlide ? 'opacity-100' : 'opacity-0'
-                }`}
-                style={{ backgroundImage: `url(${slide.mobileImage})` }}
-              />
-            </div>
-          ))}
-          <div className="absolute inset-0 bg-black/1" />
+          <HeroPicture
+            slide={heroSlides[currentSlide]}
+            eager={currentSlide === 0}
+          />
+          <div className="absolute inset-0 bg-black/10" />
           <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-black/20" />
         </div>
 
@@ -165,13 +208,13 @@ export default function Page() {
               Selamat Datang Di
             </p>
 
-            <h1 className="mt-3 text-3xl font-bold leading-none sm:text-5xl md:text-7xl lg:text-7xl">
+            <h1 className="mt-3 text-3xl font-bold leading-none sm:text-5xl md:text-7xl lg:text-7xl text-amber-200">
               Desa Labuhan Kuris
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-7 text-white/90 md:text-lg">
               Desa dengan potensi wisata bahari yang memukau, mulai dari pulau kecil, pantai, hingga
-              keindahan bawah laut, serta kekuatan pertanian padi dan semangka yang menjadi kebanggaan
+              keindahan bawah laut, serta kekuatan pertanian padi, semangka, dan jagung yang menjadi kebanggaan
               masyarakat.
             </p>
 
@@ -332,7 +375,7 @@ export default function Page() {
       </section>
 
       <footer className="bg-black px-6 py-6 text-center text-sm text-white">
-        Copyright @ {currentYear} Desa Labuhan Kuris
+        Copyright Rahmad Ramdhani @ {currentYear}
       </footer>
     </main>
   );
