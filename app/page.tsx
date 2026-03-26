@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { getImageProps } from 'next/image';
+import Link from 'next/link';
 
 const heroSlides = [
   {
@@ -54,13 +55,13 @@ const potensi = [
 ];
 
 const navItems = [
-  { label: 'Beranda', href: '#beranda' },
-  { label: 'Profil', href: '#profil' },
-  { label: 'Wisata', href: '#wisata' },
-  { label: 'Statistik', href: '#statistik' },
-  { label: 'Pertanian', href: '#pertanian' },
-  { label: 'Galeri', href: '#galeri' },
-  { label: 'Kontak', href: '#kontak' },
+  { label: 'Beranda', href: '/', isPage: true },
+  { label: 'Profil', href: '/profil', isPage: true },
+  { label: 'Wisata', href: '#wisata', isPage: false },
+  { label: 'Statistik', href: '#statistik', isPage: false },
+  { label: 'Pertanian', href: '#pertanian', isPage: false },
+  { label: 'Galeri', href: '#galeri', isPage: false },
+  { label: 'Kontak', href: '#kontak', isPage: false },
 ];
 
 type HeroSlide = {
@@ -153,20 +154,30 @@ export default function Page() {
         <header className="fixed left-0 top-0 z-30 w-full md:absolute">
           <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between rounded-full border border-white/20 bg-black/20 px-4 py-3 text-white backdrop-blur md:px-6">
-              <a href="#beranda" className="text-base font-bold tracking-wide md:text-lg">
+              <Link href="/" className="text-base font-bold tracking-wide md:text-lg">
                 Desa Labuhan Kuris
-              </a>
+              </Link>
 
               <nav className="hidden items-center gap-6 md:flex">
-                {navItems.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="text-sm font-medium text-white/90 transition hover:text-white"
-                  >
-                    {item.label}
-                  </a>
-                ))}
+                {navItems.map((item) =>
+                  item.isPage ? (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className="text-sm font-medium text-white/90 transition hover:text-white"
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      className="text-sm font-medium text-white/90 transition hover:text-white"
+                    >
+                      {item.label}
+                    </a>
+                  )
+                )}
               </nav>
 
               <button
@@ -186,16 +197,27 @@ export default function Page() {
             {mobileMenuOpen && (
               <div className="mt-3 rounded-3xl border border-white/20 bg-black/75 p-4 text-white backdrop-blur md:hidden">
                 <nav className="flex flex-col gap-1">
-                  {navItems.map((item) => (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="rounded-2xl px-4 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10 hover:text-white"
-                    >
-                      {item.label}
-                    </a>
-                  ))}
+                  {navItems.map((item) =>
+                    item.isPage ? (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="rounded-2xl px-4 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10 hover:text-white"
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="rounded-2xl px-4 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10 hover:text-white"
+                      >
+                        {item.label}
+                      </a>
+                    )
+                  )}
                 </nav>
               </div>
             )}
@@ -270,13 +292,26 @@ export default function Page() {
 
       <section id="profil" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-700">Tentang Desa</p>
-          <h2 className="mt-3 text-3xl font-bold md:text-4xl">Desa dengan kekayaan laut dan pertanian</h2>
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-700">
+            Tentang Desa
+          </p>
+          <h2 className="mt-3 text-3xl font-bold md:text-4xl">
+            Desa dengan kekayaan laut dan pertanian
+          </h2>
           <p className="mt-4 text-base leading-7 text-slate-600">
             Desa Labuhan Kuris memiliki perpaduan kekuatan antara wisata alam bahari dan sektor
             pertanian. Laut yang indah, pantai yang menawan, serta hasil padi dan semangka memberi
             identitas yang kuat bagi desa ini.
           </p>
+
+          <div className="mt-8">
+            <Link
+              href="/profil"
+              className="inline-flex rounded-2xl bg-sky-700 px-6 py-3 font-semibold text-white transition hover:bg-sky-800"
+            >
+              Lihat selengkapnya
+            </Link>
+          </div>
         </div>
       </section>
 
