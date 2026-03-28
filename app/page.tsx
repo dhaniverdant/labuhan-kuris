@@ -102,6 +102,7 @@ function HeroPicture({
         loading={eager ? 'eager' : 'lazy'}
         fetchPriority={eager ? 'high' : 'auto'}
         className="h-full w-full object-cover"
+        alt='slider image'
       />
     </picture>
   );
@@ -113,7 +114,7 @@ export default function Page() {
   useEffect(() => {
     const interval = window.setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
+    }, 6000);
 
     return () => window.clearInterval(interval);
   }, []);
@@ -129,7 +130,7 @@ export default function Page() {
         <div className="absolute inset-0">
           <HeroPicture slide={heroSlides[currentSlide]} eager={currentSlide === 0} />
           <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
+          <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-black/20" />
         </div>
 
         <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6 pb-24 pt-28 lg:px-8 md:pt-32">
@@ -197,7 +198,7 @@ export default function Page() {
         </button>
       </section>
 
-      <section id="profil" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <section id="profil" className="mx-auto max-w-7xl px-6 py-18 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-700">
             Tentang Desa
@@ -241,7 +242,7 @@ export default function Page() {
               key={item.title}
               className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="mb-4 h-44 rounded-2xl bg-gradient-to-br from-sky-100 via-cyan-50 to-emerald-100" />
+              <div className="mb-4 h-44 rounded-2xl bg-linear-to-br from-sky-100 via-cyan-50 to-emerald-100" />
               <h3 className="text-xl font-bold">{item.title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-600">{item.desc}</p>
               <button className="mt-5 text-sm font-semibold text-sky-700">Baca Detail →</button>
@@ -273,7 +274,7 @@ export default function Page() {
       </section>
 
       <section id="pertanian" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="rounded-[2rem] bg-slate-900 px-6 py-10 text-white md:px-10">
+        <div className="rounded-4xl bg-slate-900 px-6 py-10 text-white md:px-10">
           <div className="grid gap-8 lg:grid-cols-2">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-300">
@@ -313,7 +314,7 @@ export default function Page() {
       </section>
 
       <section id="kontak" className="mx-auto max-w-7xl px-6 pb-20 pt-6 lg:px-8">
-        <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
+        <div className="rounded-4xl border border-slate-200 bg-white p-8 shadow-sm">
           <h2 className="text-2xl font-bold">Kontak Desa</h2>
           <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
             Tambahkan alamat kantor desa, nomor telepon, email, media sosial, dan peta lokasi pada
