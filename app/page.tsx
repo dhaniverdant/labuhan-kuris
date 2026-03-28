@@ -1,10 +1,17 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { getImageProps } from 'next/image';
 import Link from 'next/link';
+import { getImageProps } from 'next/image';
+import { useEffect, useState } from 'react';
 
-const heroSlides = [
+type HeroSlide = {
+  title: string;
+  subtitle: string;
+  desktopImage: string;
+  mobileImage: string;
+};
+
+const heroSlides: HeroSlide[] = [
   {
     title: 'Panorama Sejangan',
     subtitle:
@@ -54,23 +61,6 @@ const potensi = [
   },
 ];
 
-const navItems = [
-  { label: 'Beranda', href: '/', isPage: true },
-  { label: 'Profil', href: '/profil', isPage: true },
-  { label: 'Wisata', href: '#wisata', isPage: false },
-  { label: 'Statistik', href: '#statistik', isPage: false },
-  { label: 'Pertanian', href: '#pertanian', isPage: false },
-  { label: 'Galeri', href: '#galeri', isPage: false },
-  { label: 'Kontak', href: '#kontak', isPage: false },
-];
-
-type HeroSlide = {
-  title: string;
-  subtitle: string;
-  desktopImage: string;
-  mobileImage: string;
-};
-
 function HeroPicture({
   slide,
   eager = false,
@@ -112,7 +102,6 @@ function HeroPicture({
         loading={eager ? 'eager' : 'lazy'}
         fetchPriority={eager ? 'high' : 'auto'}
         className="h-full w-full object-cover"
-        alt='slider image'
       />
     </picture>
   );
@@ -120,8 +109,6 @@ function HeroPicture({
 
 export default function Page() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -138,106 +125,27 @@ export default function Page() {
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-800">
-      <section
-        id="beranda"
-        className="relative min-h-screen overflow-hidden"
-      >
+      <section id="beranda" className="relative min-h-screen overflow-hidden">
         <div className="absolute inset-0">
-          <HeroPicture
-            slide={heroSlides[currentSlide]}
-            eager={currentSlide === 0}
-          />
+          <HeroPicture slide={heroSlides[currentSlide]} eager={currentSlide === 0} />
           <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
         </div>
 
-        <header className="fixed left-0 top-0 z-30 w-full md:absolute">
-          <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between rounded-full border border-white/20 bg-black/20 px-4 py-3 text-white backdrop-blur md:px-6">
-              <Link href="/" className="text-base font-bold tracking-wide md:text-lg">
-                Desa Labuhan Kuris
-              </Link>
-
-              <nav className="hidden items-center gap-6 md:flex">
-                {navItems.map((item) =>
-                  item.isPage ? (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      className="text-sm font-medium text-white/90 transition hover:text-white"
-                    >
-                      {item.label}
-                    </Link>
-                  ) : (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      className="text-sm font-medium text-white/90 transition hover:text-white"
-                    >
-                      {item.label}
-                    </a>
-                  )
-                )}
-              </nav>
-
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen((prev) => !prev)}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/10 md:hidden"
-                aria-label="Buka menu navigasi"
-              >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-white">
-                  <path d="M4 7H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  <path d="M4 12H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  <path d="M4 17H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-              </button>
-            </div>
-
-            {mobileMenuOpen && (
-              <div className="mt-3 rounded-3xl border border-white/20 bg-black/75 p-4 text-white backdrop-blur md:hidden">
-                <nav className="flex flex-col gap-1">
-                  {navItems.map((item) =>
-                    item.isPage ? (
-                      <Link
-                        key={item.label}
-                        href={item.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="rounded-2xl px-4 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10 hover:text-white"
-                      >
-                        {item.label}
-                      </Link>
-                    ) : (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="rounded-2xl px-4 py-3 text-sm font-medium text-white/90 transition hover:bg-white/10 hover:text-white"
-                      >
-                        {item.label}
-                      </a>
-                    )
-                  )}
-                </nav>
-              </div>
-            )}
-          </div>
-        </header>
-
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6 py-24 lg:px-8">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6 pb-24 pt-28 lg:px-8 md:pt-32">
           <div className="max-w-3xl text-white">
             <p className="text-sm font-semibold uppercase tracking-[0.4em] text-white/80 md:text-base">
               Selamat Datang Di
             </p>
 
-            <h1 className="mt-3 text-3xl font-bold leading-none sm:text-5xl md:text-7xl lg:text-7xl text-amber-200">
+            <h1 className="mt-3 text-3xl font-bold leading-none text-amber-200 sm:text-5xl md:text-7xl lg:text-7xl">
               Desa Labuhan Kuris
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-7 text-white/90 md:text-lg">
               Desa dengan potensi wisata bahari yang memukau, mulai dari pulau kecil, pantai, hingga
-              keindahan bawah laut, serta kekuatan pertanian padi, semangka, dan jagung yang menjadi kebanggaan
-              masyarakat.
+              keindahan bawah laut, serta kekuatan pertanian padi, semangka, dan jagung yang menjadi
+              kebanggaan masyarakat.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -287,8 +195,7 @@ export default function Page() {
             />
           </svg>
         </button>
-
-        </section>
+      </section>
 
       <section id="profil" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
@@ -318,7 +225,9 @@ export default function Page() {
       <section id="wisata" className="mx-auto max-w-7xl px-6 py-4 lg:px-8">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-700">Wisata Unggulan</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-700">
+              Wisata Unggulan
+            </p>
             <h2 className="mt-2 text-3xl font-bold">Pesona bahari desa</h2>
           </div>
           <button className="rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold shadow-sm">
@@ -332,7 +241,7 @@ export default function Page() {
               key={item.title}
               className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="mb-4 h-44 rounded-2xl bg-linear-to-br from-sky-100 via-cyan-50 to-emerald-100" />
+              <div className="mb-4 h-44 rounded-2xl bg-gradient-to-br from-sky-100 via-cyan-50 to-emerald-100" />
               <h3 className="text-xl font-bold">{item.title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-600">{item.desc}</p>
               <button className="mt-5 text-sm font-semibold text-sky-700">Baca Detail →</button>
@@ -349,7 +258,9 @@ export default function Page() {
             <p className="mt-2 text-sm text-slate-600">Potensi wisata unggulan desa.</p>
           </div>
           <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Pertanian</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">
+              Pertanian
+            </p>
             <h3 className="mt-3 text-3xl font-bold">2</h3>
             <p className="mt-2 text-sm text-slate-600">Komoditas utama: padi dan semangka.</p>
           </div>
@@ -362,10 +273,12 @@ export default function Page() {
       </section>
 
       <section id="pertanian" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="rounded-4xl bg-slate-900 px-6 py-10 text-white md:px-10">
+        <div className="rounded-[2rem] bg-slate-900 px-6 py-10 text-white md:px-10">
           <div className="grid gap-8 lg:grid-cols-2">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-300">Potensi Pertanian</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-300">
+                Potensi Pertanian
+              </p>
               <h2 className="mt-3 text-3xl font-bold md:text-4xl">Dari sawah hingga kebun semangka</h2>
               <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 md:text-base">
                 Selain wisata, desa juga memiliki kekuatan pada sektor pertanian. Potensi ini bisa
@@ -400,7 +313,7 @@ export default function Page() {
       </section>
 
       <section id="kontak" className="mx-auto max-w-7xl px-6 pb-20 pt-6 lg:px-8">
-        <div className="rounded-4xl border border-slate-200 bg-white p-8 shadow-sm">
+        <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
           <h2 className="text-2xl font-bold">Kontak Desa</h2>
           <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
             Tambahkan alamat kantor desa, nomor telepon, email, media sosial, dan peta lokasi pada
@@ -408,10 +321,6 @@ export default function Page() {
           </p>
         </div>
       </section>
-
-      <footer className="bg-black px-6 py-6 text-center text-sm text-white">
-        Copyright Rahmad Ramdhani @ {currentYear}
-      </footer>
     </main>
   );
 }
