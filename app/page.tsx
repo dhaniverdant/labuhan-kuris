@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { getImageProps } from 'next/image';
-import { useEffect, useState } from 'react';
+import Link from "next/link";
+import { getImageProps } from "next/image";
+import { useEffect, useState } from "react";
 
 type HeroSlide = {
   title: string;
@@ -13,51 +13,51 @@ type HeroSlide = {
 
 const heroSlides: HeroSlide[] = [
   {
-    title: 'Panorama Sejangan',
+    title: "Panorama Sejangan",
     subtitle:
-      'Pemandangan alam pesisir yang memperlihatkan keindahan khas Desa Labuhan Kuris.',
-    desktopImage: '/images/sejangan.JPG',
-    mobileImage: '/images/mobile/sejangan-mobile.JPG',
+      "Pemandangan alam pesisir yang memperlihatkan keindahan khas Desa Labuhan Kuris.",
+    desktopImage: "/images/sejangan.JPG",
+    mobileImage: "/images/mobile/sejangan-mobile.JPG",
   },
   {
-    title: 'Keindahan Sawah Desa',
+    title: "Keindahan Sawah Desa",
     subtitle:
-      'Sudut alam yang memperlihatkan kekayaan panorama pertanian Desa Labuhan Kuris.',
-    desktopImage: '/images/sawah.JPG',
-    mobileImage: '/images/mobile/sawah-mobile.JPG',
+      "Sudut alam yang memperlihatkan kekayaan panorama pertanian Desa Labuhan Kuris.",
+    desktopImage: "/images/sawah.JPG",
+    mobileImage: "/images/mobile/sawah-mobile.JPG",
   },
   {
-    title: 'Pesona Dangar Rea',
+    title: "Pesona Dangar Rea",
     subtitle:
-      'Lanskap alam yang memperkuat daya tarik wisata desa dan cocok ditampilkan di halaman utama.',
-    desktopImage: '/images/dangar-rea.jpg',
-    mobileImage: '/images/mobile/dangar-rea-mobile.jpg',
+      "Lanskap alam yang memperkuat daya tarik wisata desa dan cocok ditampilkan di halaman utama.",
+    desktopImage: "/images/dangar-rea.jpg",
+    mobileImage: "/images/mobile/dangar-rea-mobile.jpg",
   },
 ];
 
 const wisata = [
   {
-    title: 'Pulau Kecil Eksotis',
-    desc: 'Pulau kecil yang cocok untuk menikmati laut jernih, berfoto, dan bersantai bersama keluarga.',
+    title: "Pulau Kecil Eksotis",
+    desc: "Pulau kecil yang cocok untuk menikmati laut jernih, berfoto, dan bersantai bersama keluarga.",
   },
   {
-    title: 'Pantai yang Menawan',
-    desc: 'Pesisir desa menawarkan panorama alami, udara segar, dan suasana yang cocok untuk wisata santai.',
+    title: "Pantai yang Menawan",
+    desc: "Pesisir desa menawarkan panorama alami, udara segar, dan suasana yang cocok untuk wisata santai.",
   },
   {
-    title: 'Keindahan Bawah Laut',
-    desc: 'Pemandangan bawah laut yang indah berpotensi dikembangkan untuk snorkeling dan wisata edukasi.',
+    title: "Keindahan Bawah Laut",
+    desc: "Pemandangan bawah laut yang indah berpotensi dikembangkan untuk snorkeling dan wisata edukasi.",
   },
 ];
 
 const potensi = [
   {
-    title: 'Pertanian Padi',
-    desc: 'Hamparan sawah yang subur menjadi penopang pangan sekaligus sumber ekonomi masyarakat desa.',
+    title: "Pertanian Padi",
+    desc: "Hamparan sawah yang subur menjadi penopang pangan sekaligus sumber ekonomi masyarakat desa.",
   },
   {
-    title: 'Budidaya Semangka',
-    desc: 'Semangka menjadi salah satu hasil pertanian unggulan yang dapat memperkuat identitas desa.',
+    title: "Budidaya Semangka",
+    desc: "Semangka menjadi salah satu hasil pertanian unggulan yang dapat memperkuat identitas desa.",
   },
 ];
 
@@ -70,7 +70,7 @@ function HeroPicture({
 }) {
   const common = {
     alt: slide.title,
-    sizes: '100vw',
+    sizes: "100vw",
   };
 
   const {
@@ -99,10 +99,10 @@ function HeroPicture({
       <source media="(min-width: 768px)" srcSet={desktopSrcSet} />
       <img
         {...imgProps}
-        loading={eager ? 'eager' : 'lazy'}
-        fetchPriority={eager ? 'high' : 'auto'}
+        loading={eager ? "eager" : "lazy"}
+        fetchPriority={eager ? "high" : "auto"}
         className="h-full w-full object-cover"
-        alt='slider image'
+        alt="slider image"
       />
     </picture>
   );
@@ -120,15 +120,18 @@ export default function Page() {
   }, []);
 
   const scrollToContent = () => {
-    const target = document.getElementById('profil');
-    target?.scrollIntoView({ behavior: 'smooth' });
+    const target = document.getElementById("profil");
+    target?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-800">
       <section id="beranda" className="relative min-h-screen overflow-hidden">
         <div className="absolute inset-0">
-          <HeroPicture slide={heroSlides[currentSlide]} eager={currentSlide === 0} />
+          <HeroPicture
+            slide={heroSlides[currentSlide]}
+            eager={currentSlide === 0}
+          />
           <div className="absolute inset-0 bg-black/10" />
           <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-black/20" />
         </div>
@@ -144,9 +147,10 @@ export default function Page() {
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-7 text-white/90 md:text-lg">
-              Desa dengan potensi wisata bahari yang memukau, mulai dari pulau kecil, pantai, hingga
-              keindahan bawah laut, serta kekuatan pertanian padi, semangka, dan jagung yang menjadi
-              kebanggaan masyarakat.
+              Desa dengan potensi wisata bahari yang memukau, mulai dari pulau
+              kecil, pantai, hingga keindahan bawah laut, serta kekuatan
+              pertanian padi, semangka, dan jagung yang menjadi kebanggaan
+              masyarakat.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -173,7 +177,7 @@ export default function Page() {
               type="button"
               onClick={() => setCurrentSlide(index)}
               className={`h-3 rounded-full transition-all ${
-                index === currentSlide ? 'w-10 bg-white' : 'w-3 bg-white/50'
+                index === currentSlide ? "w-10 bg-white" : "w-3 bg-white/50"
               }`}
               aria-label={`Pilih slide ${index + 1}`}
             />
@@ -207,9 +211,10 @@ export default function Page() {
             Desa dengan kekayaan laut dan pertanian
           </h2>
           <p className="mt-4 text-base leading-7 text-slate-600">
-            Desa Labuhan Kuris memiliki perpaduan kekuatan antara wisata alam bahari dan sektor
-            pertanian. Laut yang indah, pantai yang menawan, serta hasil padi dan semangka memberi
-            identitas yang kuat bagi desa ini.
+            Desa Labuhan Kuris memiliki perpaduan kekuatan antara wisata alam
+            bahari dan sektor pertanian. Laut yang indah, pantai yang menawan,
+            serta hasil padi dan semangka memberi identitas yang kuat bagi desa
+            ini.
           </p>
 
           <div className="mt-8">
@@ -244,8 +249,12 @@ export default function Page() {
             >
               <div className="mb-4 h-44 rounded-2xl bg-linear-to-br from-sky-100 via-cyan-50 to-emerald-100" />
               <h3 className="text-xl font-bold">{item.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-600">{item.desc}</p>
-              <button className="mt-5 text-sm font-semibold text-sky-700">Baca Detail →</button>
+              <p className="mt-3 text-sm leading-6 text-slate-600">
+                {item.desc}
+              </p>
+              <button className="mt-5 text-sm font-semibold text-sky-700">
+                Baca Detail →
+              </button>
             </article>
           ))}
         </div>
@@ -254,21 +263,31 @@ export default function Page() {
       <section id="statistik" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid gap-6 md:grid-cols-3">
           <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">Statistik</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">
+              Statistik
+            </p>
             <h3 className="mt-3 text-3xl font-bold">3+</h3>
-            <p className="mt-2 text-sm text-slate-600">Potensi wisata unggulan desa.</p>
+            <p className="mt-2 text-sm text-slate-600">
+              Potensi wisata unggulan desa.
+            </p>
           </div>
           <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">
               Pertanian
             </p>
             <h3 className="mt-3 text-3xl font-bold">2</h3>
-            <p className="mt-2 text-sm text-slate-600">Komoditas utama: padi dan semangka.</p>
+            <p className="mt-2 text-sm text-slate-600">
+              Komoditas utama: padi dan semangka.
+            </p>
           </div>
           <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-700">Potensi</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-700">
+              Potensi
+            </p>
             <h3 className="mt-3 text-3xl font-bold">100%</h3>
-            <p className="mt-2 text-sm text-slate-600">Keindahan alam dan daya tarik lokal.</p>
+            <p className="mt-2 text-sm text-slate-600">
+              Keindahan alam dan daya tarik lokal.
+            </p>
           </div>
         </div>
       </section>
@@ -280,17 +299,25 @@ export default function Page() {
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-300">
                 Potensi Pertanian
               </p>
-              <h2 className="mt-3 text-3xl font-bold md:text-4xl">Dari sawah hingga kebun semangka</h2>
+              <h2 className="mt-3 text-3xl font-bold md:text-4xl">
+                Dari sawah hingga kebun semangka
+              </h2>
               <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 md:text-base">
-                Selain wisata, desa juga memiliki kekuatan pada sektor pertanian. Potensi ini bisa
-                ditampilkan untuk menarik perhatian pengunjung, investor, maupun mitra pengembangan desa.
+                Selain wisata, desa juga memiliki kekuatan pada sektor
+                pertanian. Potensi ini bisa ditampilkan untuk menarik perhatian
+                pengunjung, investor, maupun mitra pengembangan desa.
               </p>
             </div>
             <div className="grid gap-4">
               {potensi.map((item) => (
-                <div key={item.title} className="rounded-3xl bg-white/10 p-5 backdrop-blur">
+                <div
+                  key={item.title}
+                  className="rounded-3xl bg-white/10 p-5 backdrop-blur"
+                >
                   <h3 className="text-xl font-bold">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-white/80">{item.desc}</p>
+                  <p className="mt-2 text-sm leading-6 text-white/80">
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>
@@ -300,26 +327,52 @@ export default function Page() {
 
       <section id="galeri" className="mx-auto max-w-7xl px-6 pb-10 lg:px-8">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {['Galeri Foto', 'Berita Desa', 'Lokasi Desa', 'Kontak Pengelola'].map((item) => (
-            <div key={item} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+          {[
+            "Galeri Foto",
+            "Berita Desa",
+            "Lokasi Desa",
+            "Kontak Pengelola",
+          ].map((item) => (
+            <div
+              key={item}
+              className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+            >
               <div className="mb-4 h-12 w-12 rounded-2xl bg-slate-100" />
               <h3 className="text-lg font-bold">{item}</h3>
               <p className="mt-2 text-sm leading-6 text-slate-600">
-                Bagian ini dapat diisi informasi lanjutan agar pengunjung mudah mengenal desa dan
-                menghubungi pihak terkait.
+                Bagian ini dapat diisi informasi lanjutan agar pengunjung mudah
+                mengenal desa dan menghubungi pihak terkait.
               </p>
             </div>
           ))}
         </div>
       </section>
 
-      <section id="kontak" className="mx-auto max-w-7xl px-6 pb-20 pt-6 lg:px-8">
+      <section
+        id="kontak"
+        className="mx-auto max-w-7xl px-6 pb-20 pt-6 lg:px-8"
+      >
         <div className="rounded-4xl border border-slate-200 bg-white p-8 shadow-sm">
-          <h2 className="text-2xl font-bold">Kontak Desa</h2>
-          <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
-            Tambahkan alamat kantor desa, nomor telepon, email, media sosial, dan peta lokasi pada
-            bagian ini agar masyarakat dan pengunjung mudah menghubungi pihak desa.
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-700">
+            Kontak
           </p>
+          <h2 className="mt-3 text-3xl font-bold">
+            Hubungi Desa Labuhan Kuris
+          </h2>
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600">
+            Dapatkan informasi lebih lanjut mengenai profil desa, potensi
+            wisata, kerja sama, dan kebutuhan informasi lainnya melalui halaman
+            kontak.
+          </p>
+
+          <div className="mt-8">
+            <Link
+              href="/kontak"
+              className="inline-flex rounded-2xl bg-sky-700 px-6 py-3 font-semibold text-white transition hover:bg-sky-800"
+            >
+              Lihat selengkapnya
+            </Link>
+          </div>
         </div>
       </section>
     </main>

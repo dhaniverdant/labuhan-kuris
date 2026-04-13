@@ -11,7 +11,7 @@ const navItems = [
   { label: 'Statistik', href: '/#statistik' },
   { label: 'Pertanian', href: '/#pertanian' },
   { label: 'Galeri', href: '/#galeri' },
-  { label: 'Kontak', href: '/#kontak' },
+  { label: 'Kontak', href: '/kontak' },
 ];
 
 type MobileMenuState = {
@@ -47,6 +47,7 @@ export default function Navbar() {
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
     if (href === '/profil') return pathname === '/profil';
+    if (href === '/kontak') return pathname === '/kontak';
     return false;
   };
 
@@ -64,7 +65,7 @@ export default function Navbar() {
                 key={item.label}
                 href={item.href}
                 className={`text-sm font-medium transition ${
-                  isActive(item.href) ? 'text-white' : 'text-white/85 hover:text-white'
+                  isActive(item.href) ? 'text-yellow-300' : 'text-white/85 hover:text-white'
                 }`}
               >
                 {item.label}
