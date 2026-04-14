@@ -1,24 +1,15 @@
 "use client";
 
+import PageHero from "@/components/page-hero";
+
 export default function ProfilPage() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-800">
-      <section className="relative min-h-[60vh] overflow-hidden bg-sky-900 text-white">
-        <div className="mx-auto max-w-7xl px-6 pb-20 pt-32 lg:px-8">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-200">
-            Profil
-          </p>
-          <h1 className="mt-3 text-4xl font-bold md:text-6xl">
-            Desa Labuhan Kuris
-          </h1>
-          <p className="mt-6 max-w-3xl text-base leading-7 text-white/85 md:text-lg">
-            Desa Labuhan Kuris adalah desa yang memiliki kekayaan potensi wisata
-            bahari dan pertanian. Keindahan alam pesisir, pemandangan sawah,
-            serta komoditas unggulan desa menjadi kekuatan utama dalam
-            pengembangan desa.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Profil"
+        title="Desa Labuhan Kuris"
+        description="Desa Labuhan Kuris adalah desa yang memiliki kekayaan potensi wisata bahari dan pertanian. Keindahan alam pesisir, pemandangan sawah, serta komoditas unggulan desa menjadi kekuatan utama dalam pengembangan desa."
+      />
 
       <section className="mx-auto max-w-5xl px-6 py-16 lg:px-8">
         <div className="grid gap-8 md:grid-cols-2">
