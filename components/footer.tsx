@@ -1,3 +1,5 @@
+import { siteContact } from "@/data/site-contact";
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -16,12 +18,14 @@ export default function Footer() {
           </h2>
 
           <p className="mt-6 text-m font-medium">
-            +62 1234 5678 999
+           {siteContact.phoneDisplay}
           </p>
 
           <div className="mt-6 flex items-center gap-4 md:justify-end">
             <a
-              href="#"
+              href={siteContact.facebookHref}
+              target="_blank"
+              rel="noreferrer"
               aria-label="Facebook"
               className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/20 transition hover:bg-black hover:text-white"
             >
@@ -36,7 +40,9 @@ export default function Footer() {
             </a>
 
             <a
-              href="#"
+              href={siteContact.instagramHref}
+              target="_blank"
+              rel="noreferrer"
               aria-label="Instagram"
               className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/20 transition hover:bg-black hover:text-white"
             >

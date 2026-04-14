@@ -1,0 +1,16 @@
+export const siteContact = {
+  phoneDisplay: '+62 1234 5678 999',
+  phoneHref: 'tel:+6212345678999',
+  emailDisplay: 'desalabuhankuris@example.com',
+  emailHref: 'mailto:desalabuhankuris@example.com',
+  facebookDisplay: 'facebook.com/desalabuhankuris',
+  facebookHref: 'https://facebook.com/desalabuhankuris',
+  instagramDisplay: 'instagram.com/pokdarwis_labuhankuris',
+  instagramHref: 'https://instagram.com/pokdarwis_labuhankuris',
+  addressLine1: 'Kantor Desa Labuhan Kuris',
+  addressLine2: 'Kecamatan XXX, Kabupaten XXX',
+  mapsEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2123.118509415253!2d117.63293859957922!3d-8.581188054424999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcbbd61b49ae671%3A0x9d814474b849af2b!2sKantor%20desa%20labuhan%20kuris!5e1!3m2!1sen!2sid!4v1776079808014!5m2!1sen!2sid',
+  mapsUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2123.118509415253!2d117.63293859957922!3d-8.581188054424999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcbbd61b49ae671%3A0x9d814474b849af2b!2sKantor%20desa%20labuhan%20kuris!5e1!3m2!1sen!2sid!4v1776079808014!5m2!1sen!2sid',
+  serviceDays: 'Senin - Jumat',
+  serviceHours: '08.00 - 16.00 WITA',
+};

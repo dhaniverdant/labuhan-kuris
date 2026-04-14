@@ -1,3 +1,5 @@
+import { siteContact } from "@/data/site-contact";
+
 export default function KontakPage() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-800">
@@ -16,6 +18,7 @@ export default function KontakPage() {
           </p>
         </div>
       </section>
+
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid gap-8 md:grid-cols-2">
           <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
@@ -24,23 +27,23 @@ export default function KontakPage() {
             <div className="mt-6 space-y-5 text-sm leading-7 text-slate-600">
               <div>
                 <p className="font-semibold text-slate-800">Nomor Telepon</p>
-                <p>+62 1234 5678 999</p>
+                <p>{siteContact.phoneDisplay}</p>
               </div>
 
               <div>
                 <p className="font-semibold text-slate-800">Email</p>
                 <a
-                  href="mailto:desalabuhankuris@example.com"
+                  href={siteContact.emailHref}
                   className="text-sky-700 transition hover:text-sky-900 hover:underline"
                 >
-                  desalabuhankuris@example.com
+                  {siteContact.emailDisplay}
                 </a>
               </div>
 
               <div>
                 <p className="font-semibold text-slate-800">Alamat</p>
-                <p>Kantor Desa Labuhan Kuris</p>
-                <p>Kecamatan XXX, Kabupaten XXX</p>
+                <p>{siteContact.addressLine1}</p>
+                <p>{siteContact.addressLine2}</p>
               </div>
             </div>
           </div>
@@ -51,25 +54,32 @@ export default function KontakPage() {
             <div className="mt-6 space-y-5 text-sm leading-7 text-slate-600">
               <div>
                 <p className="font-semibold text-slate-800">Facebook</p>
-                <p>facebook.com/desalabuhankuris</p>
+                <a
+                  href={siteContact.facebookHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sky-700 transition hover:text-sky-900 hover:underline"
+                >
+                  {siteContact.facebookDisplay}
+                </a>
               </div>
 
               <div>
                 <p className="font-semibold text-slate-800">Instagram</p>
                 <a
-                  href="https://instagram.com/pokdarwis_labuhankuris"
+                  href={siteContact.instagramHref}
                   target="_blank"
                   rel="noreferrer"
                   className="text-sky-700 transition hover:text-sky-900 hover:underline"
                 >
-                  instagram.com/pokdarwis_labuhankuris
+                  {siteContact.instagramDisplay}
                 </a>
               </div>
 
               <div>
                 <p className="font-semibold text-slate-800">Jam Layanan</p>
-                <p>Senin - Jumat</p>
-                <p>08.00 - 16.00 WITA</p>
+                <p>{siteContact.serviceDays}</p>
+                <p>{siteContact.serviceHours}</p>
               </div>
             </div>
           </div>
@@ -84,7 +94,7 @@ export default function KontakPage() {
             <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200">
               <iframe
                 title="Lokasi Kantor Desa Labuhan Kuris"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2123.118509415253!2d117.63293859957922!3d-8.581188054424999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcbbd61b49ae671%3A0x9d814474b849af2b!2sKantor%20desa%20labuhan%20kuris!5e1!3m2!1sen!2sid!4v1776079808014!5m2!1sen!2sid"
+                src={siteContact.mapsEmbedUrl}
                 width="100%"
                 height="420"
                 style={{ border: 0 }}
