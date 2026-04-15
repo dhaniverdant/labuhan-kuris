@@ -10,7 +10,7 @@ const navItems = [
   { label: 'Wisata', href: '/wisata' },
   { label: 'Statistik', href: '/#statistik' },
   { label: 'Pertanian', href: '/pertanian' },
-  { label: 'Galeri', href: '/#galeri' },
+  { label: 'Galeri', href: '/galeri' },
   { label: 'Kontak', href: '/kontak' },
 ];
 
@@ -50,6 +50,7 @@ export default function Navbar() {
     if (href === '/kontak') return pathname === '/kontak';
     if (href === '/wisata') return pathname === '/wisata';
     if (href === '/pertanian') return pathname === '/pertanian';
+    if (href === '/galeri') return pathname === '/galeri';
     return false;
   };
 
