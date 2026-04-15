@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getImageProps } from "next/image";
 import { useEffect, useState } from "react";
 import { wisataItems } from "@/data/wisata";
+import { pertanianItems } from "@/data/pertanian";
 
 type HeroSlide = {
   title: string;
@@ -33,17 +34,6 @@ const heroSlides: HeroSlide[] = [
       "Lanskap alam yang memperkuat daya tarik wisata desa dan cocok ditampilkan di halaman utama.",
     desktopImage: "/images/dangar-rea.jpg",
     mobileImage: "/images/mobile/dangar-rea-mobile.jpg",
-  },
-];
-
-const potensi = [
-  {
-    title: "Pertanian Padi",
-    desc: "Hamparan sawah yang subur menjadi penopang pangan sekaligus sumber ekonomi masyarakat desa.",
-  },
-  {
-    title: "Budidaya Semangka",
-    desc: "Semangka menjadi salah satu hasil pertanian unggulan yang dapat memperkuat identitas desa.",
   },
 ];
 
@@ -292,23 +282,32 @@ export default function Page() {
                 Potensi Pertanian
               </p>
               <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-                Dari sawah hingga kebun semangka
+                Dari sawah hingga kebun semangka dan jagung
               </h2>
               <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 md:text-base">
                 Selain wisata, desa juga memiliki kekuatan pada sektor
                 pertanian. Potensi ini bisa ditampilkan untuk menarik perhatian
                 pengunjung, investor, maupun mitra pengembangan desa.
               </p>
+              <div className="mt-8">
+                <Link
+                  href="/pertanian"
+                  className="inline-flex rounded-2xl bg-white px-6 py-3 font-semibold text-slate-900 transition hover:bg-slate-100"
+                >
+                  Lihat selengkapnya
+                </Link>
+              </div>
             </div>
+
             <div className="grid gap-4">
-              {potensi.map((item) => (
+              {pertanianItems.map((item) => (
                 <div
                   key={item.title}
                   className="rounded-3xl bg-white/10 p-5 backdrop-blur"
                 >
                   <h3 className="text-xl font-bold">{item.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-white/80">
-                    {item.desc}
+                    {item.description}
                   </p>
                 </div>
               ))}
