@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { getImageProps } from "next/image";
 import { useEffect, useState } from "react";
+import { wisataItems } from "@/data/wisata";
 
 type HeroSlide = {
   title: string;
@@ -32,21 +33,6 @@ const heroSlides: HeroSlide[] = [
       "Lanskap alam yang memperkuat daya tarik wisata desa dan cocok ditampilkan di halaman utama.",
     desktopImage: "/images/dangar-rea.jpg",
     mobileImage: "/images/mobile/dangar-rea-mobile.jpg",
-  },
-];
-
-const wisata = [
-  {
-    title: "Pulau Kecil Eksotis",
-    desc: "Pulau kecil yang cocok untuk menikmati laut jernih, berfoto, dan bersantai bersama keluarga.",
-  },
-  {
-    title: "Pantai yang Menawan",
-    desc: "Pesisir desa menawarkan panorama alami, udara segar, dan suasana yang cocok untuk wisata santai.",
-  },
-  {
-    title: "Keindahan Bawah Laut",
-    desc: "Pemandangan bawah laut yang indah berpotensi dikembangkan untuk snorkeling dan wisata edukasi.",
   },
 ];
 
@@ -236,13 +222,16 @@ export default function Page() {
             </p>
             <h2 className="mt-2 text-3xl font-bold">Pesona bahari desa</h2>
           </div>
-          <button className="rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold shadow-sm">
+          <Link
+            href="/wisata"
+            className="rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold shadow-sm"
+          >
             Lihat Semua
-          </button>
+          </Link>
         </div>
 
         <div className="mt-8 grid gap-6 md:grid-cols-3">
-          {wisata.map((item) => (
+          {wisataItems.map((item) => (
             <article
               key={item.title}
               className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
@@ -250,11 +239,14 @@ export default function Page() {
               <div className="mb-4 h-44 rounded-2xl bg-linear-to-br from-sky-100 via-cyan-50 to-emerald-100" />
               <h3 className="text-xl font-bold">{item.title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-600">
-                {item.desc}
+                {item.description}
               </p>
-              <button className="mt-5 text-sm font-semibold text-sky-700">
+              <Link
+                href="/wisata"
+                className="mt-5 inline-block text-sm font-semibold text-sky-700"
+              >
                 Baca Detail →
-              </button>
+              </Link>
             </article>
           ))}
         </div>

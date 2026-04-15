@@ -7,7 +7,7 @@ import { useState } from 'react';
 const navItems = [
   { label: 'Beranda', href: '/' },
   { label: 'Profil', href: '/profil' },
-  { label: 'Wisata', href: '/#wisata' },
+  { label: 'Wisata', href: '/wisata' },
   { label: 'Statistik', href: '/#statistik' },
   { label: 'Pertanian', href: '/#pertanian' },
   { label: 'Galeri', href: '/#galeri' },
@@ -48,6 +48,7 @@ export default function Navbar() {
     if (href === '/') return pathname === '/';
     if (href === '/profil') return pathname === '/profil';
     if (href === '/kontak') return pathname === '/kontak';
+    if (href === '/wisata') return pathname === '/wisata';
     return false;
   };
 
