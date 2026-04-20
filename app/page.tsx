@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { getImageProps } from "next/image";
+import Image, { getImageProps } from "next/image";
 import { useEffect, useState } from "react";
 import { wisataItems } from "@/data/wisata";
 import { pertanianItems } from "@/data/pertanian";
+import { galeriItems } from "@/data/galeri";
+import GalleryCard from "@/components/gallery-card";
 
 type HeroSlide = {
   title: string;
@@ -243,32 +245,52 @@ export default function Page() {
       </section>
 
       <section id="statistik" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid gap-6 md:grid-cols-3">
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-700">
               Statistik
             </p>
-            <h3 className="mt-3 text-3xl font-bold">3+</h3>
+            <h2 className="mt-2 text-3xl font-bold">
+              Gambaran singkat data desa
+            </h2>
+          </div>
+
+          <Link
+            href="/statistik"
+            className="rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold shadow-sm"
+          >
+            Lihat Semua
+          </Link>
+        </div>
+
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">
+              Penduduk
+            </p>
+            <h3 className="mt-3 text-3xl font-bold">3.245</h3>
             <p className="mt-2 text-sm text-slate-600">
-              Potensi wisata unggulan desa.
+              Gambaran jumlah penduduk desa secara umum.
             </p>
           </div>
+
           <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">
-              Pertanian
+              Dana Desa
             </p>
-            <h3 className="mt-3 text-3xl font-bold">2</h3>
+            <h3 className="mt-3 text-3xl font-bold">4 Bidang</h3>
             <p className="mt-2 text-sm text-slate-600">
-              Komoditas utama: padi dan semangka.
+              Ringkasan anggaran dan realisasi penggunaan dana desa.
             </p>
           </div>
+
           <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-700">
-              Potensi
+              Pertanian
             </p>
-            <h3 className="mt-3 text-3xl font-bold">100%</h3>
+            <h3 className="mt-3 text-3xl font-bold">3 Komoditas</h3>
             <p className="mt-2 text-sm text-slate-600">
-              Keindahan alam dan daya tarik lokal.
+              Padi, semangka, dan jagung sebagai komoditas utama desa.
             </p>
           </div>
         </div>
@@ -316,25 +338,31 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="galeri" className="mx-auto max-w-7xl px-6 pb-10 lg:px-8">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {[
-            "Galeri Foto",
-            "Berita Desa",
-            "Lokasi Desa",
-            "Kontak Pengelola",
-          ].map((item) => (
-            <div
-              key={item}
-              className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
-            >
-              <div className="mb-4 h-12 w-12 rounded-2xl bg-slate-100" />
-              <h3 className="text-lg font-bold">{item}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">
-                Bagian ini dapat diisi informasi lanjutan agar pengunjung mudah
-                mengenal desa dan menghubungi pihak terkait.
-              </p>
-            </div>
+      <section id="galeri" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-700">
+              Galeri
+            </p>
+            <h2 className="mt-2 text-3xl font-bold">Potret visual desa</h2>
+          </div>
+
+          <Link
+            href="/galeri"
+            className="rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold shadow-sm"
+          >
+            Lihat Semua
+          </Link>
+        </div>
+
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {galeriItems.slice(0, 3).map((item) => (
+            <GalleryCard
+              key={item.title}
+              title={item.title}
+              description={item.description}
+              image={item.image}
+            />
           ))}
         </div>
       </section>
