@@ -5,11 +5,11 @@ import {
   BarChart,
   CartesianGrid,
   Legend,
-  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from 'recharts';
+import ChartFrame from '@/components/charts/chart-frame';
 import { danaDesa } from '@/data/statistik';
 
 export default function VillageBudgetChart() {
@@ -25,9 +25,9 @@ export default function VillageBudgetChart() {
         </p>
       </div>
 
-      <div className="h-80 w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={danaDesa}>
+      <ChartFrame>
+        {({ width, height }) => (
+          <BarChart width={width} height={height} data={danaDesa}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
@@ -36,8 +36,8 @@ export default function VillageBudgetChart() {
             <Bar dataKey="anggaran" name="Anggaran" radius={[10, 10, 0, 0]} />
             <Bar dataKey="realisasi" name="Realisasi" radius={[10, 10, 0, 0]} />
           </BarChart>
-        </ResponsiveContainer>
-      </div>
+        )}
+      </ChartFrame>
     </div>
   );
 }

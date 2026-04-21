@@ -1,8 +1,6 @@
 import PageHero from '@/components/page-hero';
-import PopulationBarChart from '@/components/charts/population-bar-chart';
 import StatistikSummaryCards from '@/components/statistik-summary-cards';
-import VillageBudgetChart from '@/components/charts/village-budget-chart';
-import AgricultureOutputChart from '@/components/charts/agriculture-output-chart';
+import StatistikCharts from '@/components/statistik-charts';
 
 export default function StatistikPage() {
   return (
@@ -15,9 +13,7 @@ export default function StatistikPage() {
 
       <section className="mx-auto max-w-7xl space-y-8 px-6 py-16 lg:px-8">
         <StatistikSummaryCards />
-        <PopulationBarChart />
-        <VillageBudgetChart />
-        <AgricultureOutputChart />
+        <StatistikCharts />
       </section>
     </main>
   );

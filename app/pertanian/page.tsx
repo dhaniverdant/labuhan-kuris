@@ -1,5 +1,6 @@
-import PageHero from '@/components/page-hero';
-import { pertanianItems } from '@/data/pertanian';
+import PageHero from "@/components/page-hero";
+import AgricultureCard from "@/components/agriculture-card";
+import { pertanianItems } from "@/data/pertanian";
 
 export default function PertanianPage() {
   return (
@@ -13,15 +14,11 @@ export default function PertanianPage() {
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {pertanianItems.map((item) => (
-            <article
+            <AgricultureCard
               key={item.title}
-              className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm"
-            >
-              <h2 className="text-2xl font-bold">{item.title}</h2>
-              <p className="mt-4 text-sm leading-7 text-slate-600">
-                {item.description}
-              </p>
-            </article>
+              title={item.title}
+              description={item.description}
+            />
           ))}
         </div>
       </section>

@@ -1,14 +1,7 @@
 "use client";
 
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
+import ChartFrame from "@/components/charts/chart-frame";
 import { hasilPertanian } from "@/data/statistik";
 
 export default function AgricultureOutputChart() {
@@ -25,17 +18,17 @@ export default function AgricultureOutputChart() {
         </p>
       </div>
 
-      <div className="h-80 w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={hasilPertanian}>
+      <ChartFrame>
+        {({ width, height }) => (
+          <BarChart width={width} height={height} data={hasilPertanian}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
             <Bar dataKey="hasil" radius={[12, 12, 0, 0]} />
           </BarChart>
-        </ResponsiveContainer>
-      </div>
+        )}
+      </ChartFrame>
     </div>
   );
 }

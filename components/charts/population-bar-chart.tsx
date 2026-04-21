@@ -4,11 +4,11 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
-  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from 'recharts';
+import ChartFrame from '@/components/charts/chart-frame';
 import { pendudukPerDusun } from '@/data/statistik';
 
 export default function PopulationBarChart() {
@@ -24,17 +24,17 @@ export default function PopulationBarChart() {
         </p>
       </div>
 
-      <div className="h-80 w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={pendudukPerDusun}>
+      <ChartFrame>
+        {({ width, height }) => (
+          <BarChart width={width} height={height} data={pendudukPerDusun}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
             <Bar dataKey="penduduk" radius={[12, 12, 0, 0]} />
           </BarChart>
-        </ResponsiveContainer>
-      </div>
+        )}
+      </ChartFrame>
     </div>
   );
 }
