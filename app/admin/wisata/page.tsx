@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getWisataImageUrl } from "@/lib/supabase/wisata";
 import { createWisata } from "./actions";
 import DeleteWisataButton from "./delete-wisata-button";
+import { logout } from "../actions";
 
 export default async function AdminWisataPage() {
   const supabase = await createClient();
@@ -34,12 +35,23 @@ export default async function AdminWisataPage() {
     .order("created_at", { ascending: false });
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-10 text-black">
-      <div>
-        <h1 className="text-2xl font-semibold">Admin Wisata</h1>
-        <p className="mt-2 text-sm text-black">
-          Kelola data wisata yang akan tampil di halaman publik.
-        </p>
+    <main className="mx-auto max-w-5xl px-6 py-20 text-gray-700">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-semibold">Admin Wisata</h1>
+          <p className="mt-2 text-sm text-black">
+            Kelola data wisata yang akan tampil di halaman publik.
+          </p>
+        </div>
+
+        <form action={logout}>
+          <button
+            type="submit"
+            className="cursor-pointer rounded-xl border border-gray-300 px-4 py-2 text-sm font-medium text-white hover:bg-gray-600"
+          >
+            Logout
+          </button>
+        </form>
       </div>
 
       <section className="mt-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
