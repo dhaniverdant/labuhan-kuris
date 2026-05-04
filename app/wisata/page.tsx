@@ -1,8 +1,10 @@
-import PageHero from '@/components/page-hero';
-import TourismCard from '@/components/tourism-card';
-import { wisataItems } from '@/data/wisata';
+import PageHero from "@/components/page-hero";
+import TourismCard from "@/components/tourism-card";
+import { getPublishedWisata } from "@/lib/supabase/wisata";
 
-export default function WisataPage() {
+export default async function WisataPage() {
+  const wisataItems = await getPublishedWisata();
+
   return (
     <main className="min-h-screen bg-slate-50 text-slate-800">
       <PageHero
@@ -12,15 +14,21 @@ export default function WisataPage() {
       />
 
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid gap-8 md:grid-cols-3">
-          {wisataItems.map((item) => (
-            <TourismCard
-              key={item.title}
-              title={item.title}
-              description={item.description}
-            />
-          ))}
-        </div>
+        {wisataItems.length > 0 ? (
+          <div className="grid gap-8 md:grid-cols-3">
+            {wisataItems.map((item) => (
+              <TourismCard
+                key={item.id}
+                title={item.name}
+                description={item.short_description ?? ""}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center text-slate-600">
+            Belum ada data wisata yang dipublikasikan.
+          </div>
+        )}
       </section>
     </main>
   );
