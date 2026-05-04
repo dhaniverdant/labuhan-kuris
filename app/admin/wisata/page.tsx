@@ -3,6 +3,8 @@ import { createClient } from "@/lib/supabase/server";
 import { createWisata } from "./actions";
 import DeleteWisataButton from "./delete-wisata-button";
 import Link from "next/link";
+import { getWisataImageUrl } from "@/lib/supabase/wisata";
+import Image from "next/image";
 
 export default async function AdminWisataPage() {
   const supabase = await createClient();
@@ -27,7 +29,7 @@ export default async function AdminWisataPage() {
 
   const { data: wisataList, error } = await supabase
     .from("wisata")
-    .select("id, name, slug, location, is_published, display_order")
+    .select("id, name, slug, location, image_path, is_published, display_order")
     .order("display_order", { ascending: true })
     .order("created_at", { ascending: false });
 
@@ -166,6 +168,7 @@ export default async function AdminWisataPage() {
             <table className="min-w-full text-sm text-black">
               <thead className="bg-gray-50 text-left">
                 <tr>
+                  <th className="px-4 py-3">Gambar</th>
                   <th className="px-4 py-3">Nama</th>
                   <th className="px-4 py-3">Slug</th>
                   <th className="px-4 py-3">Lokasi</th>
@@ -175,9 +178,25 @@ export default async function AdminWisataPage() {
                 </tr>
               </thead>
               <tbody>
-                {wisataList && wisataList.length > 0 ? (
-                  wisataList.map((item) => (
+                {wisataList.map((item) => {
+                  const imageUrl = getWisataImageUrl(item.image_path);
+
+                  return (
                     <tr key={item.id} className="border-t border-gray-100">
+                      <td className="px-4 py-3">
+                        {imageUrl ? (
+                          <Image
+                            src={imageUrl}
+                            alt={item.name}
+                            width={80}
+                            height={56}
+                            className="h-14 w-20 rounded-lg object-cover"
+                          />
+                        ) : (
+                          <div className="h-14 w-20 rounded-lg bg-gray-100" />
+                        )}
+                      </td>
+
                       <td className="px-4 py-3">{item.name}</td>
                       <td className="px-4 py-3">{item.slug}</td>
                       <td className="px-4 py-3">{item.location ?? "-"}</td>
@@ -198,17 +217,8 @@ export default async function AdminWisataPage() {
                         </div>
                       </td>
                     </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td
-                      colSpan={6}
-                      className="px-4 py-6 text-center text-black"
-                    >
-                      Belum ada data wisata.
-                    </td>
-                  </tr>
-                )}
+                  );
+                })}
               </tbody>
             </table>
           </div>
