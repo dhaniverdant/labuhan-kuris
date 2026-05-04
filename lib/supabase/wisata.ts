@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 
-function getWisataImageUrl(imagePath: string | null) {
+export function getWisataImageUrl(imagePath: string | null) {
   if (!imagePath) {
     return null;
   }
