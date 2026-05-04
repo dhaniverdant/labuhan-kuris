@@ -1,10 +1,10 @@
+import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { getWisataImageUrl } from "@/lib/supabase/wisata";
 import { createWisata } from "./actions";
 import DeleteWisataButton from "./delete-wisata-button";
-import Link from "next/link";
-import { getWisataImageUrl } from "@/lib/supabase/wisata";
-import Image from "next/image";
 
 export default async function AdminWisataPage() {
   const supabase = await createClient();
@@ -34,7 +34,7 @@ export default async function AdminWisataPage() {
     .order("created_at", { ascending: false });
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-10">
+    <main className="mx-auto max-w-5xl px-6 py-10 text-black">
       <div>
         <h1 className="text-2xl font-semibold">Admin Wisata</h1>
         <p className="mt-2 text-sm text-black">
@@ -43,12 +43,9 @@ export default async function AdminWisataPage() {
       </div>
 
       <section className="mt-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-        <h2 className="text-lg font-semibold text-black">Tambah Wisata</h2>
+        <h2 className="text-lg font-semibold">Tambah Wisata</h2>
 
-        <form
-          action={createWisata}
-          className="mt-6 grid gap-4 md:grid-cols-2 text-black"
-        >
+        <form action={createWisata} className="mt-6 grid gap-4 md:grid-cols-2">
           <div>
             <label htmlFor="name" className="mb-1 block text-sm font-medium">
               Nama Wisata
@@ -58,7 +55,7 @@ export default async function AdminWisataPage() {
               name="name"
               required
               placeholder="Contoh: Pantai Labuhan Kuris"
-              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:border-black"
+              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
             />
           </div>
 
@@ -70,7 +67,7 @@ export default async function AdminWisataPage() {
               id="slug"
               name="slug"
               placeholder="boleh kosong, otomatis dari nama"
-              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:border-black"
+              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
             />
           </div>
 
@@ -86,7 +83,7 @@ export default async function AdminWisataPage() {
               name="short_description"
               rows={3}
               placeholder="Tulis deskripsi singkat wisata..."
-              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:border-black"
+              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
             />
           </div>
 
@@ -101,7 +98,7 @@ export default async function AdminWisataPage() {
               id="location"
               name="location"
               placeholder="Contoh: Labuhan Kuris"
-              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:border-black"
+              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
             />
           </div>
 
@@ -117,7 +114,7 @@ export default async function AdminWisataPage() {
               name="display_order"
               type="number"
               defaultValue={0}
-              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:border-black"
+              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
             />
           </div>
 
@@ -165,7 +162,7 @@ export default async function AdminWisataPage() {
           </p>
         ) : (
           <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
-            <table className="min-w-full text-sm text-black">
+            <table className="min-w-full text-sm">
               <thead className="bg-gray-50 text-left">
                 <tr>
                   <th className="px-4 py-3">Gambar</th>
@@ -177,48 +174,60 @@ export default async function AdminWisataPage() {
                   <th className="px-4 py-3">Aksi</th>
                 </tr>
               </thead>
+
               <tbody>
-                {wisataList.map((item) => {
-                  const imageUrl = getWisataImageUrl(item.image_path);
+                {wisataList && wisataList.length > 0 ? (
+                  wisataList.map((item) => {
+                    const imageUrl = getWisataImageUrl(item.image_path);
 
-                  return (
-                    <tr key={item.id} className="border-t border-gray-100">
-                      <td className="px-4 py-3">
-                        {imageUrl ? (
-                          <Image
-                            src={imageUrl}
-                            alt={item.name}
-                            width={80}
-                            height={56}
-                            className="h-14 w-20 rounded-lg object-cover"
-                          />
-                        ) : (
-                          <div className="h-14 w-20 rounded-lg bg-gray-100" />
-                        )}
-                      </td>
+                    return (
+                      <tr key={item.id} className="border-t border-gray-100">
+                        <td className="px-4 py-3">
+                          {imageUrl ? (
+                            <Image
+                              src={imageUrl}
+                              alt={item.name}
+                              width={80}
+                              height={56}
+                              className="h-14 w-20 rounded-lg object-cover"
+                            />
+                          ) : (
+                            <div className="h-14 w-20 rounded-lg bg-gray-100" />
+                          )}
+                        </td>
 
-                      <td className="px-4 py-3">{item.name}</td>
-                      <td className="px-4 py-3">{item.slug}</td>
-                      <td className="px-4 py-3">{item.location ?? "-"}</td>
-                      <td className="px-4 py-3">
-                        {item.is_published ? "Ya" : "Tidak"}
-                      </td>
-                      <td className="px-4 py-3">{item.display_order}</td>
-                      <td className="px-4 py-3">
-                        <div className="flex items-center gap-2">
-                          <Link
-                            href={`/admin/wisata/${item.id}/edit`}
-                            className="rounded-lg border border-gray-300 px-3 py-1 text-sm font-medium text-black hover:bg-gray-50"
-                          >
-                            Edit
-                          </Link>
+                        <td className="px-4 py-3">{item.name}</td>
+                        <td className="px-4 py-3">{item.slug}</td>
+                        <td className="px-4 py-3">{item.location ?? "-"}</td>
+                        <td className="px-4 py-3">
+                          {item.is_published ? "Ya" : "Tidak"}
+                        </td>
+                        <td className="px-4 py-3">{item.display_order}</td>
+                        <td className="px-4 py-3">
+                          <div className="flex items-center gap-2">
+                            <Link
+                              href={`/admin/wisata/${item.id}/edit`}
+                              className="rounded-lg border border-gray-300 px-3 py-1 text-sm font-medium text-black hover:bg-gray-50"
+                            >
+                              Edit
+                            </Link>
 
-                          <DeleteWisataButton id={item.id} name={item.name} />
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })}
+                            <DeleteWisataButton id={item.id} name={item.name} />
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })
+                ) : (
+                  <tr>
+                    <td
+                      colSpan={7}
+                      className="px-4 py-6 text-center text-black"
+                    >
+                      Belum ada data wisata.
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
