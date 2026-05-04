@@ -35,3 +35,29 @@ export async function getPublishedWisata() {
     image_url: getWisataImageUrl(item.image_path),
   }));
 }
+
+export async function getPublishedWisataBySlug(slug: string) {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("wisata")
+    .select(
+      "id, name, slug, short_description, location, image_path, is_published, display_order",
+    )
+    .eq("slug", slug)
+    .eq("is_published", true)
+    .maybeSingle();
+
+  if (error) {
+    throw new Error(`Gagal mengambil detail wisata: ${error.message}`);
+  }
+
+  if (!data) {
+    return null;
+  }
+
+  return {
+    ...data,
+    image_url: getWisataImageUrl(data.image_path),
+  };
+}

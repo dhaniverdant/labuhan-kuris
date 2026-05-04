@@ -21,7 +21,8 @@ export default async function WisataPage() {
                 key={item.id}
                 title={item.name}
                 description={item.short_description ?? ""}
-                 imageUrl={item.image_url}
+                imageUrl={item.image_url}
+                href={`/wisata/${item.slug}`}
               />
             ))}
           </div>
