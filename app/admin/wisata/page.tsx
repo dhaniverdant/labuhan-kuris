@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createWisata } from "./actions";
 import DeleteWisataButton from "./delete-wisata-button";
+import Link from "next/link";
 
 export default async function AdminWisataPage() {
   const supabase = await createClient();
@@ -168,7 +169,16 @@ export default async function AdminWisataPage() {
                       </td>
                       <td className="px-4 py-3">{item.display_order}</td>
                       <td className="px-4 py-3">
-                        <DeleteWisataButton id={item.id} name={item.name} />
+                        <div className="flex items-center gap-2">
+                          <Link
+                            href={`/admin/wisata/${item.id}/edit`}
+                            className="rounded-lg border border-gray-300 px-3 py-1 text-sm font-medium text-black hover:bg-gray-50"
+                          >
+                            Edit
+                          </Link>
+
+                          <DeleteWisataButton id={item.id} name={item.name} />
+                        </div>
                       </td>
                     </tr>
                   ))
