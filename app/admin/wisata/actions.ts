@@ -42,6 +42,7 @@ export async function createWisata(formData: FormData) {
   const location = String(formData.get("location") ?? "").trim();
   const displayOrder = Number(formData.get("display_order") ?? 0);
   const isPublished = formData.get("is_published") === "on";
+  const imageFile = formData.get("image") as File | null;
 
   if (!name) {
     throw new Error("Nama wisata wajib diisi.");
@@ -49,11 +50,33 @@ export async function createWisata(formData: FormData) {
 
   const slug = inputSlug ? slugify(inputSlug) : slugify(name);
 
+  let imagePath: string | null = null;
+
+  if (imageFile && imageFile.size > 0) {
+    const fileExtension = imageFile.name.split(".").pop();
+    const fileName = `${slug}-${Date.now()}.${fileExtension}`;
+    const filePath = `wisata/${fileName}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("wisata")
+      .upload(filePath, imageFile, {
+        cacheControl: "3600",
+        upsert: false,
+      });
+
+    if (uploadError) {
+      throw new Error(`Gagal upload gambar: ${uploadError.message}`);
+    }
+
+    imagePath = filePath;
+  }
+
   const { error } = await supabase.from("wisata").insert({
     name,
     slug,
     short_description: shortDescription || null,
     location: location || null,
+    image_path: imagePath,
     display_order: Number.isNaN(displayOrder) ? 0 : displayOrder,
     is_published: isPublished,
   });

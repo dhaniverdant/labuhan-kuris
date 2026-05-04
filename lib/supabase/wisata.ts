@@ -1,5 +1,19 @@
 import { createClient } from "@/lib/supabase/server";
 
+function getWisataImageUrl(imagePath: string | null) {
+  if (!imagePath) {
+    return null;
+  }
+
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+
+  if (!supabaseUrl) {
+    return null;
+  }
+
+  return `${supabaseUrl}/storage/v1/object/public/wisata/${imagePath}`;
+}
+
 export async function getPublishedWisata() {
   const supabase = await createClient();
 
@@ -16,5 +30,8 @@ export async function getPublishedWisata() {
     throw new Error(`Gagal mengambil data wisata publish: ${error.message}`);
   }
 
-  return data;
+  return data.map((item) => ({
+    ...item,
+    image_url: getWisataImageUrl(item.image_path),
+  }));
 }
