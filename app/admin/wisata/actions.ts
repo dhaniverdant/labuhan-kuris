@@ -65,3 +65,40 @@ export async function createWisata(formData: FormData) {
   revalidatePath("/admin/wisata");
   revalidatePath("/wisata");
 }
+
+export async function deleteWisata(formData: FormData) {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect('/admin/login');
+  }
+
+  const { data: adminUser } = await supabase
+    .from('admin_users')
+    .select('id')
+    .eq('id', user.id)
+    .maybeSingle();
+
+  if (!adminUser) {
+    redirect('/admin/login');
+  }
+
+  const id = String(formData.get('id') ?? '');
+
+  if (!id) {
+    throw new Error('ID wisata tidak ditemukan.');
+  }
+
+  const { error } = await supabase.from('wisata').delete().eq('id', id);
+
+  if (error) {
+    throw new Error(`Gagal menghapus wisata: ${error.message}`);
+  }
+
+  revalidatePath('/admin/wisata');
+  revalidatePath('/wisata');
+}

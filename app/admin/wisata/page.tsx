@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createWisata } from "./actions";
+import DeleteWisataButton from "./delete-wisata-button";
 
 export default async function AdminWisataPage() {
   const supabase = await createClient();
@@ -41,7 +42,10 @@ export default async function AdminWisataPage() {
       <section className="mt-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
         <h2 className="text-lg font-semibold text-black">Tambah Wisata</h2>
 
-        <form action={createWisata} className="mt-6 grid gap-4 md:grid-cols-2 text-black">
+        <form
+          action={createWisata}
+          className="mt-6 grid gap-4 md:grid-cols-2 text-black"
+        >
           <div>
             <label htmlFor="name" className="mb-1 block text-sm font-medium">
               Nama Wisata
@@ -149,6 +153,7 @@ export default async function AdminWisataPage() {
                   <th className="px-4 py-3">Lokasi</th>
                   <th className="px-4 py-3">Publish</th>
                   <th className="px-4 py-3">Urutan</th>
+                  <th className="px-4 py-3">Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -162,12 +167,15 @@ export default async function AdminWisataPage() {
                         {item.is_published ? "Ya" : "Tidak"}
                       </td>
                       <td className="px-4 py-3">{item.display_order}</td>
+                      <td className="px-4 py-3">
+                        <DeleteWisataButton id={item.id} name={item.name} />
+                      </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
                     <td
-                      colSpan={5}
+                      colSpan={6}
                       className="px-4 py-6 text-center text-black"
                     >
                       Belum ada data wisata.
