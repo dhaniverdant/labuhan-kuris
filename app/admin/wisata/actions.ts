@@ -13,6 +13,22 @@ function slugify(value: string) {
     .replace(/-+/g, "-");
 }
 
+function parseCoordinate(value: FormDataEntryValue | null) {
+  const text = String(value ?? "").trim();
+
+  if (!text) {
+    return null;
+  }
+
+  const numberValue = Number(text);
+
+  if (Number.isNaN(numberValue)) {
+    return null;
+  }
+
+  return numberValue;
+}
+
 async function requireAdmin() {
   const supabase = await createClient();
 
@@ -64,6 +80,8 @@ export async function createWisata(formData: FormData) {
     formData.get("short_description") ?? "",
   ).trim();
   const location = String(formData.get("location") ?? "").trim();
+  const latitude = parseCoordinate(formData.get("latitude"));
+  const longitude = parseCoordinate(formData.get("longitude"));
   const displayOrder = Number(formData.get("display_order") ?? 0);
   const isPublished = formData.get("is_published") === "on";
   const imageFile = formData.get("image") as File | null;
@@ -100,6 +118,8 @@ export async function createWisata(formData: FormData) {
     slug,
     short_description: shortDescription || null,
     location: location || null,
+    latitude,
+    longitude,
     image_path: imagePath,
     display_order: Number.isNaN(displayOrder) ? 0 : displayOrder,
     is_published: isPublished,
@@ -158,6 +178,8 @@ export async function updateWisata(formData: FormData) {
     formData.get("short_description") ?? "",
   ).trim();
   const location = String(formData.get("location") ?? "").trim();
+  const latitude = parseCoordinate(formData.get("latitude"));
+  const longitude = parseCoordinate(formData.get("longitude"));
   const displayOrder = Number(formData.get("display_order") ?? 0);
   const isPublished = formData.get("is_published") === "on";
   const imageFile = formData.get("image") as File | null;
@@ -195,6 +217,8 @@ export async function updateWisata(formData: FormData) {
     slug,
     short_description: shortDescription || null,
     location: location || null,
+    latitude,
+    longitude,
     display_order: Number.isNaN(displayOrder) ? 0 : displayOrder,
     is_published: isPublished,
     updated_at: new Date().toISOString(),

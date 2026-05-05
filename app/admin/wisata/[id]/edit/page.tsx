@@ -34,7 +34,7 @@ export default async function EditWisataPage({ params }: EditWisataPageProps) {
   const { data: wisata, error } = await supabase
     .from("wisata")
     .select(
-      "id, name, slug, short_description, location, is_published, display_order",
+      "id, name, slug, short_description, location, latitude, longitude, is_published, display_order",
     )
     .eq("id", id)
     .maybeSingle();
@@ -115,6 +115,42 @@ export default async function EditWisataPage({ params }: EditWisataPageProps) {
               id="location"
               name="location"
               defaultValue={wisata.location ?? ""}
+              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="latitude"
+              className="mb-1 block text-sm font-medium"
+            >
+              Latitude
+            </label>
+            <input
+              id="latitude"
+              name="latitude"
+              type="number"
+              step="any"
+              defaultValue={wisata.latitude ?? ""}
+              placeholder="Contoh: -8.652123"
+              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="longitude"
+              className="mb-1 block text-sm font-medium"
+            >
+              Longitude
+            </label>
+            <input
+              id="longitude"
+              name="longitude"
+              type="number"
+              step="any"
+              defaultValue={wisata.longitude ?? ""}
+              placeholder="Contoh: 117.432456"
               className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
             />
           </div>

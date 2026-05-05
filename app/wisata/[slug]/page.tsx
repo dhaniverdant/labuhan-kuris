@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getPublishedWisataBySlug } from "@/lib/supabase/wisata";
+import {
+  getGoogleMapsUrl,
+  getPublishedWisataBySlug,
+} from "@/lib/supabase/wisata";
 
 type WisataDetailPageProps = {
   params: Promise<{
@@ -14,6 +17,10 @@ export default async function WisataDetailPage({
 }: WisataDetailPageProps) {
   const { slug } = await params;
   const wisata = await getPublishedWisataBySlug(slug);
+
+  const googleMapsUrl = wisata
+    ? getGoogleMapsUrl(wisata.latitude, wisata.longitude)
+    : null;
 
   if (!wisata) {
     notFound();
@@ -58,6 +65,17 @@ export default async function WisataDetailPage({
               <p className="mt-3 text-sm font-medium text-slate-600">
                 Lokasi: {wisata.location}
               </p>
+            ) : null}
+
+            {googleMapsUrl ? (
+              <a
+                href={googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block text-sm font-semibold text-sky-700 hover:text-sky-900"
+              >
+                Lihat di Google Maps →
+              </a>
             ) : null}
 
             <p className="mt-6 text-base leading-8 text-slate-700">

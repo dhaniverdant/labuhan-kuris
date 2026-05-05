@@ -20,7 +20,7 @@ export async function getPublishedWisata() {
   const { data, error } = await supabase
     .from("wisata")
     .select(
-      "id, name, slug, short_description, location, image_path, is_published, display_order",
+      "id, name, slug, short_description, location, latitude, longitude, image_path, is_published, display_order",
     )
     .eq("is_published", true)
     .order("display_order", { ascending: true })
@@ -42,7 +42,7 @@ export async function getPublishedWisataBySlug(slug: string) {
   const { data, error } = await supabase
     .from("wisata")
     .select(
-      "id, name, slug, short_description, location, image_path, is_published, display_order",
+      "id, name, slug, short_description, location, latitude, longitude, image_path, is_published, display_order",
     )
     .eq("slug", slug)
     .eq("is_published", true)
@@ -60,4 +60,15 @@ export async function getPublishedWisataBySlug(slug: string) {
     ...data,
     image_url: getWisataImageUrl(data.image_path),
   };
+}
+
+export function getGoogleMapsUrl(
+  latitude: number | null,
+  longitude: number | null,
+) {
+  if (latitude === null || longitude === null) {
+    return null;
+  }
+
+  return `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
 }

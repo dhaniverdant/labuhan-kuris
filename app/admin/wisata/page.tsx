@@ -116,6 +116,40 @@ export default async function AdminWisataPage() {
 
           <div>
             <label
+              htmlFor="latitude"
+              className="mb-1 block text-sm font-medium"
+            >
+              Latitude
+            </label>
+            <input
+              id="latitude"
+              name="latitude"
+              type="number"
+              step="any"
+              placeholder="Contoh: -8.652123"
+              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="longitude"
+              className="mb-1 block text-sm font-medium"
+            >
+              Longitude
+            </label>
+            <input
+              id="longitude"
+              name="longitude"
+              type="number"
+              step="any"
+              placeholder="Contoh: 117.432456"
+              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
+            />
+          </div>
+
+          <div>
+            <label
               htmlFor="display_order"
               className="mb-1 block text-sm font-medium"
             >
