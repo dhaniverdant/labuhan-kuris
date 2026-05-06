@@ -6,6 +6,7 @@ type TourismCardProps = {
   description: string;
   href?: string;
   imageUrl?: string | null;
+  priority?: boolean;
 };
 
 export default function TourismCard({
@@ -13,6 +14,7 @@ export default function TourismCard({
   description,
   href = "/wisata",
   imageUrl,
+  priority = false,
 }: TourismCardProps) {
   return (
     <article className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
@@ -24,6 +26,9 @@ export default function TourismCard({
             fill
             sizes="(min-width: 768px) 33vw, 100vw"
             className="object-cover"
+            loading={priority ? "eager" : "lazy"}
+            fetchPriority={priority ? "high" : "auto"}
+            unoptimized
           />
         ) : null}
       </div>

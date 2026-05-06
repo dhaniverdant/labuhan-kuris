@@ -14,14 +14,16 @@ export default async function WisataPage() {
       />
 
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <h2 className="sr-only">Daftar Wisata Desa Labuhan Kuris</h2>
         {wisataItems.length > 0 ? (
           <div className="grid gap-8 md:grid-cols-3">
-            {wisataItems.map((item) => (
+            {wisataItems.map((item, index) => (
               <TourismCard
                 key={item.id}
                 title={item.name}
                 description={item.short_description ?? ""}
                 imageUrl={item.image_url}
+                priority={index === 0}
                 href={`/wisata/${item.slug}`}
               />
             ))}

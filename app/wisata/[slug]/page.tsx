@@ -46,6 +46,7 @@ export default async function WisataDetailPage({
                 sizes="(min-width: 1024px) 896px, 100vw"
                 className="object-cover"
                 priority
+                unoptimized
               />
             </div>
           ) : (

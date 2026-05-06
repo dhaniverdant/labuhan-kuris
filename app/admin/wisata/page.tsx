@@ -236,6 +236,8 @@ export default async function AdminWisataPage() {
                               width={80}
                               height={56}
                               className="h-14 w-20 rounded-lg object-cover"
+                              unoptimized
+                              loading="lazy"
                             />
                           ) : (
                             <div className="h-14 w-20 rounded-lg bg-gray-100" />
