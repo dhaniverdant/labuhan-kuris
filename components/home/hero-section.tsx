@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { getImageProps } from 'next/image';
-import { useEffect, useState } from 'react';
+import { getImageProps } from "next/image";
+import { useEffect, useState } from "react";
 
 type HeroSlide = {
   title: string;
@@ -12,25 +12,25 @@ type HeroSlide = {
 
 const heroSlides: HeroSlide[] = [
   {
-    title: 'Panorama Sejangan',
+    title: "Panorama Sejangan",
     subtitle:
-      'Pemandangan alam pesisir yang memperlihatkan keindahan khas Desa Labuhan Kuris.',
-    desktopImage: '/images/sejangan.JPG',
-    mobileImage: '/images/mobile/sejangan-mobile.JPG',
+      "Pemandangan alam pesisir yang memperlihatkan keindahan khas Desa Labuhan Kuris.",
+    desktopImage: "/images/sejangan.JPG",
+    mobileImage: "/images/mobile/sejangan-mobile.JPG",
   },
   {
-    title: 'Keindahan Sawah Desa',
+    title: "Keindahan Sawah Desa",
     subtitle:
-      'Sudut alam yang memperlihatkan kekayaan panorama pertanian Desa Labuhan Kuris.',
-    desktopImage: '/images/sawah.JPG',
-    mobileImage: '/images/mobile/sawah-mobile.JPG',
+      "Sudut alam yang memperlihatkan kekayaan panorama pertanian Desa Labuhan Kuris.",
+    desktopImage: "/images/sawah.JPG",
+    mobileImage: "/images/mobile/sawah-mobile.JPG",
   },
   {
-    title: 'Pesona Dangar Rea',
+    title: "Pesona Dangar Rea",
     subtitle:
-      'Lanskap alam yang memperkuat daya tarik wisata desa dan cocok ditampilkan di halaman utama.',
-    desktopImage: '/images/dangar-rea.jpg',
-    mobileImage: '/images/mobile/dangar-rea-mobile.jpg',
+      "Lanskap alam yang memperkuat daya tarik wisata desa dan cocok ditampilkan di halaman utama.",
+    desktopImage: "/images/dangar-rea.jpg",
+    mobileImage: "/images/mobile/dangar-rea-mobile.jpg",
   },
 ];
 
@@ -43,7 +43,7 @@ function HeroPicture({
 }) {
   const common = {
     alt: slide.title,
-    sizes: '100vw',
+    sizes: "100vw",
   };
 
   const {
@@ -53,7 +53,7 @@ function HeroPicture({
     src: slide.desktopImage,
     width: 1600,
     height: 900,
-    quality: 75,
+    quality: 60,
   });
 
   const {
@@ -63,7 +63,7 @@ function HeroPicture({
     src: slide.mobileImage,
     width: 1080,
     height: 1350,
-    quality: 75,
+    quality: 60,
   });
 
   return (
@@ -72,10 +72,10 @@ function HeroPicture({
       <source media="(min-width: 768px)" srcSet={desktopSrcSet} />
       <img
         {...imgProps}
-        loading={eager ? 'eager' : 'lazy'}
-        fetchPriority={eager ? 'high' : 'auto'}
+        loading={eager ? "eager" : "lazy"}
+        fetchPriority={eager ? "high" : "auto"}
         className="h-full w-full object-cover"
-        alt='slider-image'
+        alt={slide.title}
       />
     </picture>
   );
@@ -93,14 +93,17 @@ export default function HeroSection() {
   }, []);
 
   const scrollToContent = () => {
-    const target = document.getElementById('profil');
-    target?.scrollIntoView({ behavior: 'smooth' });
+    const target = document.getElementById("profil");
+    target?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section id="beranda" className="relative min-h-screen overflow-hidden">
       <div className="absolute inset-0">
-        <HeroPicture slide={heroSlides[currentSlide]} eager={currentSlide === 0} />
+        <HeroPicture
+          slide={heroSlides[currentSlide]}
+          eager={currentSlide === 0}
+        />
         <div className="absolute inset-0 bg-black/10" />
         <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-black/20" />
       </div>
@@ -116,9 +119,9 @@ export default function HeroSection() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-base leading-7 text-white/90 md:text-lg">
-            Desa dengan potensi wisata bahari yang memukau, mulai dari pulau kecil, pantai, hingga
-            keindahan bawah laut, serta kekuatan pertanian padi, semangka, dan jagung yang menjadi
-            kebanggaan masyarakat.
+            Desa dengan potensi wisata bahari yang memukau, mulai dari pulau
+            kecil, pantai, hingga keindahan bawah laut, serta kekuatan pertanian
+            padi, semangka, dan jagung yang menjadi kebanggaan masyarakat.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
@@ -145,7 +148,7 @@ export default function HeroSection() {
             type="button"
             onClick={() => setCurrentSlide(index)}
             className={`h-3 rounded-full transition-all ${
-              index === currentSlide ? 'w-10 bg-white' : 'w-3 bg-white/50'
+              index === currentSlide ? "w-10 bg-white" : "w-3 bg-white/50"
             }`}
             aria-label={`Pilih slide ${index + 1}`}
           />
