@@ -1,17 +1,19 @@
-'use client';
+"use client";
 
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
-import ChartFrame from '@/components/charts/chart-frame';
-import { pendudukPerDusun } from '@/data/statistik';
+import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
+import ChartFrame from "@/components/charts/chart-frame";
 
-export default function PopulationBarChart() {
+type PendudukPerDusunItem = {
+  id?: string;
+  name: string;
+  penduduk: number;
+};
+
+type PopulationBarChartProps = {
+  data: PendudukPerDusunItem[];
+};
+
+export default function PopulationBarChart({ data }: PopulationBarChartProps) {
   return (
     <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
       <div className="mb-6">
@@ -26,7 +28,7 @@ export default function PopulationBarChart() {
 
       <ChartFrame>
         {({ width, height }) => (
-          <BarChart width={width} height={height} data={pendudukPerDusun}>
+          <BarChart width={width} height={height} data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
