@@ -7,15 +7,15 @@ const PopulationBarChart = dynamic(
   { ssr: false },
 );
 
-const VillageBudgetChart = dynamic(
-  () => import("@/components/charts/village-budget-chart"),
-  { ssr: false },
-);
+// const VillageBudgetChart = dynamic(
+//   () => import("@/components/charts/village-budget-chart"),
+//   { ssr: false },
+// );
 
-const AgricultureOutputChart = dynamic(
-  () => import("@/components/charts/agriculture-output-chart"),
-  { ssr: false },
-);
+// const AgricultureOutputChart = dynamic(
+//   () => import("@/components/charts/agriculture-output-chart"),
+//   { ssr: false },
+// );
 
 type PendudukPerDusunItem = {
   id?: string;
@@ -33,8 +33,8 @@ export default function StatistikCharts({
   return (
     <div className="space-y-8">
       <PopulationBarChart data={pendudukPerDusun} />
-      <VillageBudgetChart />
-      <AgricultureOutputChart />
+      {/* <VillageBudgetChart /> */}
+      {/* <AgricultureOutputChart /> */}
     </div>
   );
 }
