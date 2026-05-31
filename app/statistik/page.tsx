@@ -12,7 +12,7 @@ export default async function StatistikPage() {
       <PageHero
         eyebrow="Statistik"
         title="Statistik Desa Labuhan Kuris"
-        description="Gambaran umum data desa yang dapat menampilkan informasi penting mengenai potensi wilayah, masyarakat, serta sektor unggulan Desa Labuhan Kuris."
+        description="Rekapulasi data statistik penting terkait penduduk di Desa Labuhan Kuris."
       />
 
       <section className="mx-auto max-w-7xl space-y-8 px-6 py-16 lg:px-8">

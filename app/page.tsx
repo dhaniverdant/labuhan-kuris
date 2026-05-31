@@ -3,7 +3,7 @@
 import GaleriPreviewSection from "@/components/home/galeri-preview-section";
 import WisataPreviewSection from "@/components/home/wisata-preview-section";
 import PertanianPreviewSection from "@/components/home/pertanian-preview-section";
-import StatistikPreviewSection from "@/components/home/statistik-preview-section";
+// import StatistikPreviewSection from "@/components/home/statistik-preview-section";
 import ProfilPreviewSection from "@/components/home/profil-preview-section";
 import KontakPreviewSection from "@/components/home/kontak-preview-section";
 import HeroSection from "@/components/home/hero-section";
@@ -14,7 +14,7 @@ export default function Page() {
       <HeroSection />
       <ProfilPreviewSection />
       <WisataPreviewSection />
-      <StatistikPreviewSection />
+      {/* <StatistikPreviewSection /> */}
       <PertanianPreviewSection />
       <GaleriPreviewSection />
       <KontakPreviewSection />

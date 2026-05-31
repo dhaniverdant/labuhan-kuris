@@ -10,7 +10,7 @@ export default function PageHero({
   description,
 }: PageHeroProps) {
   return (
-    <section className="relative min-h-[60vh] overflow-hidden bg-sky-900 text-white">
+    <section className="relative min-h-[40vh] overflow-hidden bg-sky-900 text-white">
       <div className="mx-auto max-w-7xl px-6 pb-20 pt-32 lg:px-8">
         <p className="text-sm font-semibold uppercase tracking-[0.3em] text-sky-200">
           {eyebrow}

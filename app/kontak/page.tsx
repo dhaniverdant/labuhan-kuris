@@ -10,7 +10,7 @@ export default function KontakPage() {
         description="Silakan hubungi kami untuk informasi lebih lanjut mengenai profil desa, potensi wisata, kerja sama, maupun kebutuhan informasi lainnya."
       />
 
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
         <div className="grid gap-8 md:grid-cols-2">
           <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
             <h2 className="text-2xl font-bold">Informasi Kontak</h2>
@@ -93,6 +93,36 @@ export default function KontakPage() {
                 allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-2 lg:px-8">
+        <hr className="border-slate-300" />
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+        <div className="grid gap-8 md:grid-cols-2">
+          <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+            <h2 className="text-2xl font-bold">Tentang Aplikasi</h2>
+
+            <div className="mt-6 space-y-5 text-sm leading-7 text-slate-600">
+              <div>
+                <p className="font-semibold text-slate-800">Teknologi</p>
+                <p>TypeScript, Next.js, Node.js</p>
+                <p>Tailwind CSS, Recharts, Supabase</p>
+              </div>
+
+              <div>
+                <p className="font-semibold text-slate-800">Pengembang</p>
+                <a
+                  href="https://www.linkedin.com/in/rahmad-ramdhani/"
+                  className="text-sky-700 transition hover:text-sky-900 hover:underline"
+                >
+                  Rahmad Ramdhani
+                </a>
+              </div>
             </div>
           </div>
         </div>

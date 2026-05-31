@@ -8,10 +8,17 @@ export default function ProfilPage() {
       <PageHero
         eyebrow="Profil"
         title="Desa Labuhan Kuris"
-        description="Desa Labuhan Kuris adalah desa yang memiliki kekayaan potensi wisata bahari dan pertanian. Keindahan alam pesisir, pemandangan sawah, serta komoditas unggulan desa menjadi kekuatan utama dalam pengembangan desa."
+        description="Desa Labuhan Kuris secara administratif berada di Kecamatan Lape, Kabupaten Sumbawa, Nusa Tenggara Barat. Labuhan Kuris adalah desa yang memiliki kekayaan potensi wisata bahari dan pertanian. Keindahan alam pesisir, pemandangan sawah, serta komoditas unggulan desa menjadi kekuatan utama dalam pengembangan desa."
       />
 
       <section className="mx-auto max-w-5xl px-6 py-16 lg:px-8">
+        <div className="mb-8 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+          <h2 className="text-2xl font-bold">Lurah</h2>
+          <p className="mt-4 text-sm leading-7 text-slate-600">
+            Zubaidi H.M, A.Ma
+          </p>
+        </div>
+
         <div className="grid gap-8 md:grid-cols-2">
           <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
             <h2 className="text-2xl font-bold">Gambaran Umum</h2>
@@ -38,16 +45,6 @@ export default function ProfilPage() {
           </div>
         </div>
 
-        <div className="mt-8 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-          <h2 className="text-2xl font-bold">Arah Pengembangan Desa</h2>
-          <p className="mt-4 text-sm leading-7 text-slate-600">
-            Ke depan, Desa Labuhan Kuris dapat memperkuat identitasnya sebagai
-            desa yang memadukan sektor wisata dan pertanian. Dengan promosi
-            digital, pengelolaan potensi lokal, serta dukungan masyarakat, desa
-            ini memiliki peluang besar untuk berkembang menjadi destinasi yang
-            dikenal lebih luas.
-          </p>
-        </div>
       </section>
     </main>
   );
