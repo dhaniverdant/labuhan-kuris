@@ -8,12 +8,12 @@ export default function ProfilPage() {
       <PageHero
         eyebrow="Profil"
         title="Desa Labuhan Kuris"
-        description="Desa Labuhan Kuris secara administratif berada di Kecamatan Lape, Kabupaten Sumbawa, Nusa Tenggara Barat. Labuhan Kuris adalah desa yang memiliki kekayaan potensi wisata bahari dan pertanian. Keindahan alam pesisir, pemandangan sawah, serta komoditas unggulan desa menjadi kekuatan utama dalam pengembangan desa."
+        description="Mengenal Desa Labuhan Kuris lebih dekat: gambaran umum dan potensi utama."
       />
 
       <section className="mx-auto max-w-5xl px-6 py-16 lg:px-8">
         <div className="mb-8 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-          <h2 className="text-2xl font-bold">Lurah</h2>
+          <h2 className="text-2xl font-bold">Kepala Desa</h2>
           <p className="mt-4 text-sm leading-7 text-slate-600">
             Zubaidi H.M, A.Ma
           </p>
@@ -23,6 +23,11 @@ export default function ProfilPage() {
           <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
             <h2 className="text-2xl font-bold">Gambaran Umum</h2>
             <p className="mt-4 text-sm leading-7 text-slate-600">
+              Desa Labuhan Kuris secara administratif berada di Kecamatan Lape, Kabupaten Sumbawa, Nusa Tenggara Barat.
+              Desa ini memiliki luas wilayah sekitar 138.250 Ha 
+              dengan jumlah penduduk sekitar 5.203 jiwa yang tersebar di sembilan dusun: Aimual, Ketanga,
+              Kuris, Labuhan Kuris, Labuhan Terata, Labuhan Terata Barat, Labuhan Terata Selatan,
+              Ngali, dan Tanjung Bila.
               Desa Labuhan Kuris memiliki karakter wilayah yang kaya akan
               keindahan bahari dan didukung oleh aktivitas pertanian masyarakat.
               Potensi ini menjadi dasar penting dalam pengembangan ekonomi

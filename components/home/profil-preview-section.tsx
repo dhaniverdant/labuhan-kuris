@@ -11,6 +11,8 @@ export default function ProfilPreviewSection() {
           Desa dengan kekayaan laut dan pertanian
         </h2>
         <p className="mt-4 text-base leading-7 text-slate-600">
+          Desa Labuhan Kuris adalah salah satu desa dengan wilayah terluas di Kabupaten Sumbawa 
+          dengan luas wilayah sekitar 138.250 Ha.
           Desa Labuhan Kuris memiliki perpaduan kekuatan antara wisata alam bahari dan sektor
           pertanian. Laut yang indah, pantai yang menawan, serta hasil padi, semangka, dan jagung
           memberi identitas yang kuat bagi desa ini.
