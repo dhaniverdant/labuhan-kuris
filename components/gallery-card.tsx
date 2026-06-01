@@ -29,12 +29,12 @@ export default function GalleryCard({
       <div className="p-5">
         <h3 className="text-xl font-bold">{title}</h3>
         <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
-        <Link
+        {/* <Link
           href={href}
           className="mt-4 inline-block text-sm font-semibold text-sky-700"
         >
           Baca Detail →
-        </Link>
+        </Link> */}
       </div>
     </article>
   );
