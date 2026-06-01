@@ -16,6 +16,7 @@ export default function WisataPreviewSection() {
           <TourismCard
             key={item.title}
             title={item.title}
+            imageUrl={item.imageUrl}
             description={item.description}
           />
         ))}
