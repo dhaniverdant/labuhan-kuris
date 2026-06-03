@@ -5,6 +5,7 @@ import {
   getGoogleMapsUrl,
   getPublishedWisataBySlug,
 } from "@/lib/supabase/wisata";
+import ShareButton from "@/components/share-button";
 
 type WisataDetailPageProps = {
   params: Promise<{
@@ -18,13 +19,15 @@ export default async function WisataDetailPage({
   const { slug } = await params;
   const wisata = await getPublishedWisataBySlug(slug);
 
-  const googleMapsUrl = wisata
-    ? getGoogleMapsUrl(wisata.latitude, wisata.longitude)
-    : null;
-
   if (!wisata) {
     notFound();
   }
+
+  const googleMapsUrl = getGoogleMapsUrl(wisata.latitude, wisata.longitude);
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
+  const shareUrl = `${siteUrl}/wisata/${wisata.slug}`;
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
@@ -62,11 +65,11 @@ export default async function WisataDetailPage({
               {wisata.name}
             </h1>
 
-            {wisata.location ? (
+            {/* {wisata.location ? (
               <p className="mt-3 text-sm font-medium text-slate-600">
                 Lokasi: {wisata.location}
               </p>
-            ) : null}
+            ) : null} */}
 
             {googleMapsUrl ? (
               <a
@@ -82,6 +85,14 @@ export default async function WisataDetailPage({
             <p className="mt-6 text-base leading-8 text-slate-700">
               {wisata.short_description ?? "Belum ada deskripsi detail."}
             </p>
+
+            <div className="mt-4">
+              <ShareButton
+                title={wisata.name}
+                text={`Lihat destinasi wisata ${wisata.name} di Desa Labuhan Kuris.`}
+                url={shareUrl}
+              />
+            </div>
           </div>
         </div>
       </section>
