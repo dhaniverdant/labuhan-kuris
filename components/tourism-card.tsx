@@ -9,6 +9,14 @@ type TourismCardProps = {
   priority?: boolean;
 };
 
+function truncateText(text: string, maxLength = 100) {
+  if (text.length <= maxLength) {
+    return text;
+  }
+
+  return `${text.slice(0, maxLength).trim()}...`;
+}
+
 export default function TourismCard({
   title,
   description,
@@ -35,7 +43,9 @@ export default function TourismCard({
 
       <h3 className="text-xl font-bold text-slate-900">{title}</h3>
 
-      <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
+      <p className="mt-3 text-sm leading-6 text-slate-600">
+        {truncateText(description, 100)}
+      </p>
 
       <Link
         href={href}
