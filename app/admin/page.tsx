@@ -52,7 +52,9 @@ export default async function AdminDashboardPage() {
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">
             Wisata
           </p>
-          <h2 className="mt-3 text-xl font-bold text-black">Kelola Data Wisata</h2>
+          <h2 className="mt-3 text-xl font-bold text-black">
+            Kelola Data Wisata
+          </h2>
           <p className="mt-2 text-sm leading-6 text-black">
             Tambah, edit, hapus, upload gambar, dan atur publikasi wisata desa.
           </p>
@@ -65,9 +67,26 @@ export default async function AdminDashboardPage() {
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">
             Statistik
           </p>
-          <h2 className="mt-3 text-xl font-bold text-black">Kelola Data Statistik</h2>
+          <h2 className="mt-3 text-xl font-bold text-black">
+            Kelola Data Statistik
+          </h2>
           <p className="mt-2 text-sm leading-6 text-black">
             Ubah ringkasan statistik dan data jumlah penduduk per dusun.
+          </p>
+        </Link>
+
+        <Link
+          href="/admin/galeri"
+          className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">
+            Galeri
+          </p>
+          <h2 className="mt-3 text-xl font-bold text-black">
+            Kelola Data Galeri
+          </h2>
+          <p className="mt-2 text-sm leading-6 text-black">
+            Tambah, edit, hapus, upload gambar, dan atur publikasi galeri desa.
           </p>
         </Link>
       </section>
