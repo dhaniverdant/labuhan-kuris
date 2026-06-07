@@ -89,6 +89,22 @@ export default async function AdminDashboardPage() {
             Tambah, edit, hapus, upload gambar, dan atur publikasi galeri desa.
           </p>
         </Link>
+
+        <Link
+          href="/admin/kontak"
+          className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">
+            Kontak
+          </p>
+          <h2 className="mt-3 text-xl font-bold text-black">
+            Kelola Data Kontak
+          </h2>
+          <p className="mt-2 text-sm leading-6 text-black">
+            Ubah nomor telepon, email, media sosial, alamat, jam layanan, dan
+            peta lokasi desa.
+          </p>
+        </Link>
       </section>
     </main>
   );

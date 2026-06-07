@@ -1,7 +1,11 @@
 import PageHero from "@/components/page-hero";
-import { siteContact } from "@/data/site-contact";
+import { getSiteContact } from "@/lib/supabase/site-contact";
 
-export default function KontakPage() {
+export const dynamic = "force-dynamic";
+
+export default async function KontakPage() {
+  const siteContact = await getSiteContact();
+
   return (
     <main className="min-h-screen bg-slate-50 text-slate-800">
       <PageHero
@@ -83,7 +87,8 @@ export default function KontakPage() {
             </p>
 
             <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200">
-              <iframe
+              {siteContact.mapsEmbedUrl ? (
+                <iframe
                 title="Lokasi Kantor Desa Labuhan Kuris"
                 src={siteContact.mapsEmbedUrl}
                 width="100%"
@@ -93,6 +98,13 @@ export default function KontakPage() {
                 allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
               />
+              ) : (
+                <div className="flex h-full min-h-80 items-center justify-center bg-slate-100 px-6 text-center">
+                  <p className="max-w-md text-sm leading-6 text-slate-600">
+                    Maaf, peta lokasi belum tersedia saat ini.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
