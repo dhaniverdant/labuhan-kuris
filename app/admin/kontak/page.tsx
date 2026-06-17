@@ -34,8 +34,8 @@ export default async function AdminKontakPage() {
     <main className="mx-auto max-w-5xl px-6 py-20 text-gray-700">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold">Admin Kontak</h1>
-          <p className="mt-2 text-sm text-black">
+          <h1 className="text-2xl font-semibold text-white">Admin Kontak</h1>
+          <p className="mt-2 text-sm text-white">
             Kelola nomor telepon, email, media sosial, alamat, jam layanan, dan
             peta lokasi yang tampil di halaman kontak publik.
           </p>

@@ -1,7 +1,13 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { createPendudukPerDusun, updatePendudukPerDusun, updateStatistikSummary } from "./actions";
+import {
+  createPendudukPerDusun,
+  updatePendudukPerDusun,
+  updateStatistikSummary,
+} from "./actions";
 import DeletePendudukButton from "./delete-penduduk-button";
+import { logout } from "../actions";
+import Link from "next/link";
 
 export default async function AdminStatistikPage() {
   const supabase = await createClient();
@@ -37,12 +43,32 @@ export default async function AdminStatistikPage() {
     .order("created_at", { ascending: true });
 
   return (
-    <main className="mx-auto max-w-5xl px-6 py-10 text-black">
-      <div>
-        <h1 className="text-2xl font-semibold">Admin Statistik</h1>
-        <p className="mt-2 text-sm text-black">
-          Kelola data ringkasan statistik dan jumlah penduduk per dusun.
-        </p>
+    <main className="mx-auto max-w-5xl px-6 py-20 text-gray-700">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-semibold text-white">Admin Statistik</h1>
+          <p className="mt-2 text-sm text-white">
+            Kelola data ringkasan statistik dan jumlah penduduk per dusun.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <Link
+            href="/admin"
+            className="cursor-pointer rounded-xl border border-gray-300 px-4 py-2 text-sm font-medium text-white hover:bg-gray-600"
+          >
+            Dashboard
+          </Link>
+
+          <form action={logout}>
+            <button
+              type="submit"
+              className="cursor-pointer rounded-xl border border-gray-300 px-4 py-2 text-sm font-medium text-white hover:bg-gray-600"
+            >
+              Logout
+            </button>
+          </form>
+        </div>
       </div>
 
       <section className="mt-8">
