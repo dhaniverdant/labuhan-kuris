@@ -30,6 +30,21 @@ type MobileMenuState = {
 export default function Navbar() {
   const pathname = usePathname();
 
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 24);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const [mobileMenuState, setMobileMenuState] = useState<MobileMenuState>({
     open: false,
     pathname: "",
@@ -81,12 +96,26 @@ export default function Navbar() {
   };
 
   const isPotensiActive =
-    pathname.startsWith("/wisata") || pathname === "/pertanian";
+    pathname.startsWith("/wisata") || pathname.startsWith("/pertanian");
+
+  const desktopNavTextClass = hasScrolled
+    ? "text-slate-700 hover:text-sky-700"
+    : "text-white/85 hover:text-white";
+
+  const desktopActiveTextClass = hasScrolled
+    ? "text-sky-700"
+    : "text-yellow-300";
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between rounded-full border border-white/20 bg-white/10 px-4 py-3 text-white backdrop-blur-md md:px-6">
+        <div
+          className={`flex items-center justify-between rounded-full border px-4 py-3 backdrop-blur-md transition-all duration-300 md:px-6 ${
+            hasScrolled
+              ? "border-slate-200 bg-white/95 text-slate-900 shadow-lg shadow-slate-900/10"
+              : "border-white/20 bg-white/10 text-white"
+          }`}
+        >
           <Link
             href="/"
             className="text-base font-bold tracking-wide md:text-lg"
@@ -109,8 +138,8 @@ export default function Navbar() {
                     aria-expanded={desktopPotensiOpen}
                     className={`flex cursor-pointer items-center gap-1 text-sm font-medium transition ${
                       isPotensiActive
-                        ? "text-yellow-300"
-                        : "text-white/85 hover:text-white"
+                        ? desktopActiveTextClass
+                        : desktopNavTextClass
                     }`}
                   >
                     {item.label}
@@ -120,7 +149,13 @@ export default function Navbar() {
                   </button>
 
                   {desktopPotensiOpen ? (
-                    <div className="absolute left-1/2 top-full z-50 mt-3 w-44 -translate-x-1/2 rounded-2xl border border-white/15 bg-slate-950/95 p-2 shadow-xl backdrop-blur-md">
+                    <div
+                      className={`absolute left-1/2 top-full z-50 mt-3 w-44 -translate-x-1/2 rounded-2xl border p-2 shadow-xl backdrop-blur-md ${
+                        hasScrolled
+                          ? "border-slate-200 bg-white text-slate-700 shadow-slate-900/10"
+                          : "border-white/15 bg-slate-950/95 text-white"
+                      }`}
+                    >
                       {item.children.map((child) => (
                         <Link
                           key={child.label}
@@ -128,8 +163,12 @@ export default function Navbar() {
                           onClick={() => setDesktopPotensiOpen(false)}
                           className={`block rounded-xl px-4 py-3 text-sm font-medium transition ${
                             isActive(child.href)
-                              ? "bg-white/10 text-white"
-                              : "text-white/80 hover:bg-white/10 hover:text-white"
+                              ? hasScrolled
+                                ? "bg-sky-50 text-sky-700"
+                                : "bg-white/10 text-white"
+                              : hasScrolled
+                                ? "text-slate-700 hover:bg-slate-100 hover:text-sky-700"
+                                : "text-white/80 hover:bg-white/10 hover:text-white"
                           }`}
                         >
                           {child.label}
@@ -144,8 +183,8 @@ export default function Navbar() {
                   href={item.href}
                   className={`text-sm font-medium transition ${
                     isActive(item.href)
-                      ? "text-yellow-300"
-                      : "text-white/85 hover:text-white"
+                      ? desktopActiveTextClass
+                      : desktopNavTextClass
                   }`}
                 >
                   {item.label}
@@ -157,7 +196,11 @@ export default function Navbar() {
           <button
             type="button"
             onClick={toggleMobileMenu}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/10 md:hidden"
+            className={`inline-flex h-11 w-11 items-center justify-center rounded-full border transition md:hidden ${
+              hasScrolled
+                ? "border-slate-200 bg-slate-100 text-slate-700"
+                : "border-white/25 bg-white/10 text-white"
+            }`}
             aria-label="Buka menu navigasi"
           >
             <svg
@@ -165,7 +208,7 @@ export default function Navbar() {
               height="22"
               viewBox="0 0 24 24"
               fill="none"
-              className="text-white"
+              className="text-current"
             >
               <path
                 d="M4 7H20"
@@ -200,12 +243,12 @@ export default function Navbar() {
                       onClick={() => setMobilePotensiOpen((prev) => !prev)}
                       className={`flex w-full items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium transition ${
                         isPotensiActive
-                          ? "bg-white/10 text-white"
+                          ? "text-yellow-300"
                           : "text-white/85 hover:bg-white/10 hover:text-white"
                       }`}
                     >
                       {item.label}
-                      <span>{mobilePotensiOpen ? "−" : "+"}</span>
+                      <span>{mobilePotensiOpen ? "-" : "+"}</span>
                     </button>
 
                     {mobilePotensiOpen ? (
