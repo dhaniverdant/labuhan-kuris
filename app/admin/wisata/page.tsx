@@ -6,6 +6,7 @@ import { getWisataImageUrl } from "@/lib/supabase/wisata";
 import { createWisata } from "./actions";
 import DeleteWisataButton from "./delete-wisata-button";
 import { logout } from "../actions";
+import { CompressedImageInput } from "@/components/admin/compressed-image-input";
 
 export default async function AdminWisataPage() {
   const supabase = await createClient();
@@ -173,22 +174,7 @@ export default async function AdminWisataPage() {
             />
           </div>
 
-          <div className="md:col-span-2">
-            <label htmlFor="image" className="mb-1 block text-sm font-medium">
-              Gambar Wisata
-            </label>
-            <input
-              id="image"
-              name="image"
-              type="file"
-              accept="image/*"
-              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
-            />
-            <p className="mt-1 text-xs text-black">
-              Upload gambar utama wisata. Untuk sementara gunakan file JPG, PNG,
-              atau WebP.
-            </p>
-          </div>
+          <CompressedImageInput />
 
           <label className="flex items-center gap-2 text-sm md:col-span-2">
             <input

@@ -4,6 +4,11 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
+type SupabaseClient = Awaited<ReturnType<typeof createClient>>;
+
+const MAX_IMAGE_SIZE = 2 * 1024 * 1024; // 2 MB setelah auto-compress di browser.
+const ALLOWED_IMAGE_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
+
 function slugify(value: string) {
   return value
     .toLowerCase()
@@ -27,6 +32,91 @@ function parseCoordinate(value: FormDataEntryValue | null) {
   }
 
   return numberValue;
+}
+
+function formatFileSize(bytes: number) {
+  if (bytes < 1024 * 1024) {
+    return `${Math.round(bytes / 1024)} KB`;
+  }
+
+  return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+}
+
+function getImageFile(formData: FormData) {
+  const imageEntry = formData.get("image");
+
+  if (imageEntry instanceof File && imageEntry.size > 0) {
+    return imageEntry;
+  }
+
+  return null;
+}
+
+function getImageExtension(file: File) {
+  if (file.type === "image/webp") {
+    return "webp";
+  }
+
+  if (file.type === "image/png") {
+    return "png";
+  }
+
+  return "jpg";
+}
+
+function validateImageFile(file: File) {
+  const isHeic =
+    file.type === "image/heic" ||
+    file.type === "image/heif" ||
+    file.name.toLowerCase().endsWith(".heic") ||
+    file.name.toLowerCase().endsWith(".heif");
+
+  if (isHeic) {
+    throw new Error(
+      "Format HEIC/HEIF belum didukung. Ubah dulu ke JPG, PNG, atau WebP.",
+    );
+  }
+
+  if (!ALLOWED_IMAGE_TYPES.has(file.type)) {
+    throw new Error("Format gambar harus JPG, PNG, atau WebP.");
+  }
+
+  if (file.size > MAX_IMAGE_SIZE) {
+    throw new Error(
+      `Ukuran gambar masih terlalu besar (${formatFileSize(
+        file.size,
+      )}). Maksimal ${formatFileSize(
+        MAX_IMAGE_SIZE,
+      )}. Coba pilih gambar lain atau kompres manual terlebih dahulu.`,
+    );
+  }
+}
+
+async function uploadWisataImage(
+  supabase: SupabaseClient,
+  file: File,
+  slug: string,
+  errorPrefix: string,
+) {
+  validateImageFile(file);
+
+  const fileExtension = getImageExtension(file);
+  const fileName = `${slug}-${Date.now()}.${fileExtension}`;
+  const filePath = `wisata/${fileName}`;
+
+  const { error: uploadError } = await supabase.storage
+    .from("wisata")
+    .upload(filePath, file, {
+      cacheControl: "3600",
+      contentType: file.type,
+      upsert: false,
+    });
+
+  if (uploadError) {
+    throw new Error(`${errorPrefix}: ${uploadError.message}`);
+  }
+
+  return filePath;
 }
 
 async function requireAdmin() {
@@ -54,25 +144,7 @@ async function requireAdmin() {
 }
 
 export async function createWisata(formData: FormData) {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/admin/login");
-  }
-
-  const { data: adminUser } = await supabase
-    .from("admin_users")
-    .select("id")
-    .eq("id", user.id)
-    .maybeSingle();
-
-  if (!adminUser) {
-    redirect("/admin/login");
-  }
+  const supabase = await requireAdmin();
 
   const name = String(formData.get("name") ?? "").trim();
   const inputSlug = String(formData.get("slug") ?? "").trim();
@@ -84,7 +156,7 @@ export async function createWisata(formData: FormData) {
   const longitude = parseCoordinate(formData.get("longitude"));
   const displayOrder = Number(formData.get("display_order") ?? 0);
   const isPublished = formData.get("is_published") === "on";
-  const imageFile = formData.get("image") as File | null;
+  const imageFile = getImageFile(formData);
 
   if (!name) {
     throw new Error("Nama wisata wajib diisi.");
@@ -94,23 +166,13 @@ export async function createWisata(formData: FormData) {
 
   let imagePath: string | null = null;
 
-  if (imageFile && imageFile.size > 0) {
-    const fileExtension = imageFile.name.split(".").pop();
-    const fileName = `${slug}-${Date.now()}.${fileExtension}`;
-    const filePath = `wisata/${fileName}`;
-
-    const { error: uploadError } = await supabase.storage
-      .from("wisata")
-      .upload(filePath, imageFile, {
-        cacheControl: "3600",
-        upsert: false,
-      });
-
-    if (uploadError) {
-      throw new Error(`Gagal upload gambar: ${uploadError.message}`);
-    }
-
-    imagePath = filePath;
+  if (imageFile) {
+    imagePath = await uploadWisataImage(
+      supabase,
+      imageFile,
+      slug,
+      "Gagal upload gambar",
+    );
   }
 
   const { error } = await supabase.from("wisata").insert({
@@ -126,6 +188,10 @@ export async function createWisata(formData: FormData) {
   });
 
   if (error) {
+    if (imagePath) {
+      await supabase.storage.from("wisata").remove([imagePath]);
+    }
+
     throw new Error(`Gagal menambahkan wisata: ${error.message}`);
   }
 
@@ -182,7 +248,7 @@ export async function updateWisata(formData: FormData) {
   const longitude = parseCoordinate(formData.get("longitude"));
   const displayOrder = Number(formData.get("display_order") ?? 0);
   const isPublished = formData.get("is_published") === "on";
-  const imageFile = formData.get("image") as File | null;
+  const imageFile = getImageFile(formData);
 
   if (!id) {
     throw new Error("ID wisata tidak ditemukan.");
@@ -226,23 +292,14 @@ export async function updateWisata(formData: FormData) {
 
   let newImagePath: string | null = null;
 
-  if (imageFile && imageFile.size > 0) {
-    const fileExtension = imageFile.name.split(".").pop();
-    const fileName = `${slug}-${Date.now()}.${fileExtension}`;
-    const filePath = `wisata/${fileName}`;
+  if (imageFile) {
+    newImagePath = await uploadWisataImage(
+      supabase,
+      imageFile,
+      slug,
+      "Gagal upload gambar baru",
+    );
 
-    const { error: uploadError } = await supabase.storage
-      .from("wisata")
-      .upload(filePath, imageFile, {
-        cacheControl: "3600",
-        upsert: false,
-      });
-
-    if (uploadError) {
-      throw new Error(`Gagal upload gambar baru: ${uploadError.message}`);
-    }
-
-    newImagePath = filePath;
     updatePayload.image_path = newImagePath;
   }
 
