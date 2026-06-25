@@ -11,7 +11,7 @@ export default function SectionHeader({
   eyebrow,
   title,
   href,
-  buttonLabel = 'Lihat Semua',
+  buttonLabel = 'Selengkapnya',
 }: SectionHeaderProps) {
   return (
     <div className="flex items-end justify-between gap-4">

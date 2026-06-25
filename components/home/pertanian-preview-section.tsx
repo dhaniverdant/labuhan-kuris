@@ -5,18 +5,17 @@ import { pertanianItems } from '@/data/pertanian';
 export default function PertanianPreviewSection() {
   return (
     <section id="pertanian" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-      <div className="rounded-[2rem] bg-slate-900 px-6 py-10 text-white md:px-10">
+      <div className="rounded-4xl bg-slate-900 px-6 py-10 text-white md:px-10">
         <div className="grid gap-8 lg:grid-cols-2">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-300">
               Potensi Pertanian
             </p>
             <h2 className="mt-3 text-3xl font-bold md:text-4xl">
-              Dari sawah hingga kebun semangka dan jagung
+              Dari padi hingga semangka dan jagung
             </h2>
             <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 md:text-base">
-              Selain wisata, desa juga memiliki kekuatan pada sektor pertanian. Potensi ini bisa
-              ditampilkan untuk menarik perhatian pengunjung, investor, maupun mitra pengembangan desa.
+              Selain wisata, Desa Labuhan Kuris juga memiliki kekuatan pada sektor pertanian yang menjamin ketahanan pangan dan berpotensi besar untuk menarik perhatian pengunjung, investasi, maupun mitra pengembangan desa.
             </p>
           </div>
 

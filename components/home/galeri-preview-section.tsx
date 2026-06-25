@@ -7,7 +7,7 @@ export default function GaleriPreviewSection() {
     <section id="galeri" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
       <SectionHeader
         eyebrow="Galeri"
-        title="Potret visual desa"
+        title="Potret Visual"
         href="/galeri"
       />
 

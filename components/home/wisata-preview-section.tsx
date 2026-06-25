@@ -7,7 +7,7 @@ export default function WisataPreviewSection() {
     <section id="wisata" className="mx-auto max-w-7xl px-6 py-4 lg:px-8">
       <SectionHeader
         eyebrow="Wisata Unggulan"
-        title="Pesona bahari desa"
+        title="Pesona Bahari"
         href="/wisata"
       />
 
