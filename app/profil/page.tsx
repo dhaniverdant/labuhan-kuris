@@ -8,7 +8,7 @@ export default function ProfilPage() {
       <PageHero
         eyebrow="Profil"
         title="Desa Labuhan Kuris"
-        description="Mengenal Desa Labuhan Kuris lebih dekat: gambaran umum dan potensi utama."
+        description="Mengenal Desa Labuhan Kuris lebih dekat: gambaran umum dan potensi utama desa."
       />
 
       <section className="mx-auto max-w-5xl px-6 py-16 lg:px-8">
@@ -42,7 +42,7 @@ export default function ProfilPage() {
                 • Wisata bahari berupa pantai, pulau kecil, dan panorama alam.
               </li>
               <li>• Pertanian padi sebagai sumber pangan dan ekonomi.</li>
-              <li>• Budidaya semangka sebagai komoditas unggulan desa.</li>
+              <li>• Pertanian semangka dan jagung sebagai komoditas unggulan desa.</li>
               <li>
                 • Peluang pengembangan desa berbasis wisata dan hasil bumi.
               </li>
