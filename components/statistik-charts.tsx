@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import VillageBudgetChart from "./charts/village-budget-chart";
 
 const PopulationBarChart = dynamic(
   () => import("@/components/charts/population-bar-chart"),
@@ -33,7 +34,7 @@ export default function StatistikCharts({
   return (
     <div className="space-y-8">
       <PopulationBarChart data={pendudukPerDusun} />
-      {/* <VillageBudgetChart /> */}
+      <VillageBudgetChart />
       {/* <AgricultureOutputChart /> */}
     </div>
   );

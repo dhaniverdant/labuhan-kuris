@@ -12,7 +12,7 @@ export default async function StatistikPage() {
       <PageHero
         eyebrow="Statistik"
         title="Statistik Desa Labuhan Kuris"
-        description="Rekapulasi data statistik penting terkait penduduk di Desa Labuhan Kuris."
+        description="Rekapulasi data statistik penduduk dan dana desa di Desa Labuhan Kuris."
       />
 
       <section className="mx-auto max-w-7xl space-y-8 px-6 py-16 lg:px-8">

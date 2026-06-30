@@ -20,12 +20,12 @@ export default function VillageBudgetChart() {
           Dana Desa
         </p>
         <h2 className="mt-2 text-2xl font-bold">Anggaran dan Realisasi</h2>
-        <p className="mt-2 text-sm leading-6 text-slate-600">
-          Grafik ini menampilkan perbandingan anggaran dan realisasi pada setiap bidang.
+        <p className="mt-6 text-lg leading-6 text-slate-600">
+          Mohon maaf, data anggaran dan realisasi dana desa belum tersedia saat ini.
         </p>
       </div>
 
-      <ChartFrame>
+      {/* <ChartFrame>
         {({ width, height }) => (
           <BarChart width={width} height={height} data={danaDesa}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -37,7 +37,7 @@ export default function VillageBudgetChart() {
             <Bar dataKey="realisasi" name="Realisasi" radius={[10, 10, 0, 0]} />
           </BarChart>
         )}
-      </ChartFrame>
+      </ChartFrame> */}
     </div>
   );
 }
