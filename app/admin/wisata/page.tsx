@@ -213,7 +213,7 @@ export default async function AdminWisataPage() {
                   <th className="px-4 py-3">Publish</th>
                   <th className="px-4 py-3">Urutan</th>
                   <th className="sticky right-0 z-10 bg-gray-50 px-4 py-3">
-                    Aksi
+                    Action
                   </th>
                 </tr>
               </thead>
