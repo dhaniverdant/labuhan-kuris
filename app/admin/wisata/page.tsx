@@ -202,8 +202,8 @@ export default async function AdminWisataPage() {
             Gagal mengambil data: {error.message}
           </p>
         ) : (
-          <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
-            <table className="min-w-full text-sm">
+          <div className="w-full overflow-x-auto rounded-3xl border border-gray-200 bg-white [-webkit-overflow-scrolling:touch]">
+            <table className="w-full min-w-205 text-sm">
               <thead className="bg-gray-50 text-left">
                 <tr>
                   <th className="px-4 py-3">Gambar</th>
@@ -212,7 +212,9 @@ export default async function AdminWisataPage() {
                   <th className="px-4 py-3">Lokasi</th>
                   <th className="px-4 py-3">Publish</th>
                   <th className="px-4 py-3">Urutan</th>
-                  <th className="px-4 py-3">Aksi</th>
+                  <th className="sticky right-0 z-10 bg-gray-50 px-4 py-3">
+                    Aksi
+                  </th>
                 </tr>
               </thead>
 
@@ -239,14 +241,25 @@ export default async function AdminWisataPage() {
                           )}
                         </td>
 
-                        <td className="px-4 py-3">{item.name}</td>
-                        <td className="px-4 py-3">{item.slug}</td>
-                        <td className="px-4 py-3">{item.location ?? "-"}</td>
-                        <td className="px-4 py-3">
+                        <td className="px-4 py-3 font-medium text-black">
+                          {item.name}
+                        </td>
+
+                        <td className="px-4 py-3 text-black">{item.slug}</td>
+
+                        <td className="px-4 py-3 text-black">
+                          {item.location ?? "-"}
+                        </td>
+
+                        <td className="px-4 py-3 text-black">
                           {item.is_published ? "Ya" : "Tidak"}
                         </td>
-                        <td className="px-4 py-3">{item.display_order}</td>
-                        <td className="px-4 py-3">
+
+                        <td className="px-4 py-3 text-black">
+                          {item.display_order}
+                        </td>
+
+                        <td className="sticky right-0 bg-white px-4 py-3">
                           <div className="flex items-center gap-2">
                             <Link
                               href={`/admin/wisata/${item.id}/edit`}
