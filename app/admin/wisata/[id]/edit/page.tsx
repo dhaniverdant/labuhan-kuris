@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { updateWisata } from "../../actions";
+import { CompressedImageInput } from "@/components/admin/compressed-image-input";
 
 type EditWisataPageProps = {
   params: Promise<{
@@ -171,21 +172,7 @@ export default async function EditWisataPage({ params }: EditWisataPageProps) {
             />
           </div>
 
-          <div>
-            <label htmlFor="image" className="mb-1 block text-sm font-medium">
-              Gambar Baru
-            </label>
-            <input
-              id="image"
-              name="image"
-              type="file"
-              accept="image/*"
-              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
-            />
-            <p className="mt-1 text-xs text-black">
-              Kosongkan jika tidak ingin mengganti gambar.
-            </p>
-          </div>
+          <CompressedImageInput />
 
           <label className="flex items-center gap-2 text-sm text-black">
             <input
