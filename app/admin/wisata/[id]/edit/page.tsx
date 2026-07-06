@@ -197,17 +197,17 @@ export default async function EditWisataPage({ params }: EditWisataPageProps) {
             Publish ke halaman publik
           </label>
 
-          <div className="flex gap-3 pt-2">
+          <div className="relative z-20 mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
             <button
               type="submit"
-              className="rounded-xl bg-black px-5 py-2 text-sm font-medium text-white"
+              className="inline-flex min-h-11 items-center justify-center rounded-xl bg-black px-5 py-2 text-sm font-semibold text-white hover:bg-gray-800 active:bg-gray-900"
             >
               Simpan Perubahan
             </button>
 
             <Link
               href="/admin/wisata"
-              className="rounded-xl border border-gray-300 px-5 py-2 text-sm font-medium text-black hover:bg-gray-50"
+              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-gray-300 px-5 py-2 text-sm font-semibold text-black hover:bg-gray-50 active:bg-gray-100"
             >
               Batal
             </Link>
