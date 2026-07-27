@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/storage/v1/object/public/wisata/**",
       },
+      {
+        protocol: "https",
+        hostname: "tzmvvcbuhvyphzfefmbt.supabase.co",
+        port: "",
+        pathname: "/storage/v1/object/public/umkm/**",
+      },
     ],
   },
 };

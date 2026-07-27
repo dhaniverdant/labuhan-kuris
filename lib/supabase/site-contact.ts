@@ -67,3 +67,34 @@ export async function getSiteContact(): Promise<SiteContact> {
 
   return data ?? defaultSiteContact;
 }
+
+export function getWhatsAppUrl(
+  siteContact: Pick<SiteContact, "phoneDisplay" | "phoneHref">,
+  productName: string,
+) {
+  const phoneSource =
+    siteContact.phoneDisplay && siteContact.phoneDisplay !== "-"
+      ? siteContact.phoneDisplay
+      : siteContact.phoneHref;
+  let phoneNumber = phoneSource.replace(/\D/g, "");
+
+  if (phoneNumber.startsWith("00")) {
+    phoneNumber = phoneNumber.slice(2);
+  }
+
+  if (phoneNumber.startsWith("0")) {
+    phoneNumber = `62${phoneNumber.slice(1)}`;
+  } else if (phoneNumber.startsWith("8")) {
+    phoneNumber = `62${phoneNumber}`;
+  }
+
+  if (!phoneNumber) {
+    return null;
+  }
+
+  const message = encodeURIComponent(
+    `Halo Admin Desa Labuhan Kuris, saya ingin memesan ${productName}. Apakah produk ini masih tersedia?`,
+  );
+
+  return `https://wa.me/${phoneNumber}?text=${message}`;
+}
