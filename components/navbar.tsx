@@ -13,6 +13,7 @@ const navItems = [
     children: [
       { label: "Wisata", href: "/wisata" },
       { label: "Pertanian", href: "/pertanian" },
+      { label: "UMKM", href: "/umkm" },
       // { label: "Perikanan", href: "/perikanan" },
       // { label: "Rumput Laut", href: "/rumput-laut" },
     ],
@@ -96,7 +97,9 @@ export default function Navbar() {
   };
 
   const isPotensiActive =
-    pathname.startsWith("/wisata") || pathname.startsWith("/pertanian");
+    pathname.startsWith("/wisata") ||
+    pathname.startsWith("/pertanian") ||
+    pathname.startsWith("/umkm");
 
   const desktopNavTextClass = hasScrolled
     ? "text-slate-700 hover:text-sky-700"
