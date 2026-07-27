@@ -115,7 +115,15 @@ async function compressImage(file: File) {
   };
 }
 
-export function CompressedImageInput() {
+type CompressedImageInputProps = {
+  label?: string;
+  previewAlt?: string;
+};
+
+export function CompressedImageInput({
+  label = "Gambar Wisata",
+  previewAlt = "Preview gambar wisata",
+}: CompressedImageInputProps) {
   const [status, setStatus] = useState("");
   const [error, setError] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
@@ -165,7 +173,7 @@ export function CompressedImageInput() {
   return (
     <div className="md:col-span-2">
       <label htmlFor="image" className="mb-1 block text-sm font-medium">
-        Gambar Wisata
+        {label}
       </label>
 
       <input
@@ -194,7 +202,7 @@ export function CompressedImageInput() {
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={previewUrl}
-          alt="Preview gambar wisata"
+          alt={previewAlt}
           className="mt-4 aspect-video w-full rounded-2xl object-cover"
         />
       ) : null}

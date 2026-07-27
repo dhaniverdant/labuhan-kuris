@@ -76,6 +76,21 @@ export default async function AdminDashboardPage() {
         </Link>
 
         <Link
+          href="/admin/umkm"
+          className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">
+            UMKM
+          </p>
+          <h2 className="mt-3 text-xl font-bold text-black">
+            Kelola Produk UMKM
+          </h2>
+          <p className="mt-2 text-sm leading-6 text-black">
+            Tambah, edit, hapus, upload gambar, dan atur publikasi produk lokal.
+          </p>
+        </Link>
+
+        <Link
           href="/admin/galeri"
           className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
         >

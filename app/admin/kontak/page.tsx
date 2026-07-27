@@ -72,7 +72,7 @@ export default async function AdminKontakPage() {
               htmlFor="phoneDisplay"
               className="mb-1 block text-sm font-medium"
             >
-              Tampilan Nomor Telepon
+              Tampilan Nomor Telepon / WhatsApp
             </label>
             <input
               id="phoneDisplay"
@@ -81,6 +81,10 @@ export default async function AdminKontakPage() {
               placeholder="Contoh: 0812-3456-7890"
               className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
             />
+            <p className="mt-1 text-xs text-black">
+              Nomor ini juga digunakan oleh tombol Pesan Sekarang pada produk
+              UMKM.
+            </p>
           </div>
 
           <div>

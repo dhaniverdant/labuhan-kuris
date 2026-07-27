@@ -62,6 +62,5 @@ export async function updateSiteContact(formData: FormData) {
 
   revalidatePath("/admin/kontak");
   revalidatePath("/kontak");
+  revalidatePath("/umkm");
 }
-
-
