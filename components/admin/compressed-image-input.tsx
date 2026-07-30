@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const MAX_WIDTH = 1600;
 const MAX_HEIGHT = 1600;
@@ -130,6 +130,39 @@ export function CompressedImageInput({
   const [error, setError] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
   const [isCompressing, setIsCompressing] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const previewUrlRef = useRef("");
+
+  const clearPreview = useCallback(() => {
+    if (previewUrlRef.current) {
+      URL.revokeObjectURL(previewUrlRef.current);
+      previewUrlRef.current = "";
+    }
+
+    setPreviewUrl("");
+  }, []);
+
+  useEffect(() => {
+    const form = inputRef.current?.form;
+
+    function handleFormReset() {
+      clearPreview();
+      setStatus("");
+      setError("");
+      setIsCompressing(false);
+    }
+
+    form?.addEventListener("reset", handleFormReset);
+
+    return () => {
+      form?.removeEventListener("reset", handleFormReset);
+
+      if (previewUrlRef.current) {
+        URL.revokeObjectURL(previewUrlRef.current);
+        previewUrlRef.current = "";
+      }
+    };
+  }, [clearPreview]);
 
   async function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const input = event.currentTarget;
@@ -137,7 +170,7 @@ export function CompressedImageInput({
 
     setStatus("");
     setError("");
-    setPreviewUrl("");
+    clearPreview();
 
     if (!file) return;
 
@@ -151,7 +184,9 @@ export function CompressedImageInput({
       dataTransfer.items.add(result.file);
       input.files = dataTransfer.files;
 
-      setPreviewUrl(URL.createObjectURL(result.file));
+      const nextPreviewUrl = URL.createObjectURL(result.file);
+      previewUrlRef.current = nextPreviewUrl;
+      setPreviewUrl(nextPreviewUrl);
       setStatus(
         `Gambar berhasil dikompres dari ${formatFileSize(
           file.size,
@@ -179,6 +214,7 @@ export function CompressedImageInput({
       </label>
 
       <input
+        ref={inputRef}
         id="image"
         name="image"
         type="file"
