@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
+import { CompressedImageInput } from "@/components/admin/compressed-image-input";
 import { createClient } from "@/lib/supabase/server";
 import { updateGaleri } from "../../actions";
 
@@ -135,21 +136,10 @@ export default async function EditGaleriPage({ params }: EditGaleriPageProps) {
             />
           </div>
 
-          <div className="md:col-span-2">
-            <label htmlFor="image" className="mb-1 block text-sm font-medium">
-              Ganti Gambar
-            </label>
-            <input
-              id="image"
-              name="image"
-              type="file"
-              accept="image/*"
-              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
-            />
-            <p className="mt-1 text-xs text-black">
-              Kosongkan jika tidak ingin mengganti gambar.
-            </p>
-          </div>
+          <CompressedImageInput
+            label="Ganti Gambar (opsional)"
+            previewAlt="Preview gambar galeri baru"
+          />
 
           <label className="flex items-center gap-2 text-sm md:col-span-2">
             <input

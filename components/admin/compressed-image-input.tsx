@@ -118,11 +118,13 @@ async function compressImage(file: File) {
 type CompressedImageInputProps = {
   label?: string;
   previewAlt?: string;
+  required?: boolean;
 };
 
 export function CompressedImageInput({
   label = "Gambar Wisata",
   previewAlt = "Preview gambar wisata",
+  required = false,
 }: CompressedImageInputProps) {
   const [status, setStatus] = useState("");
   const [error, setError] = useState("");
@@ -183,6 +185,7 @@ export function CompressedImageInput({
         accept="image/jpeg,image/png,image/webp"
         onChange={handleChange}
         disabled={isCompressing}
+        required={required}
         className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black disabled:cursor-not-allowed disabled:bg-gray-100"
       />
 

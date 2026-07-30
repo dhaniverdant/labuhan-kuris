@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { CompressedImageInput } from "@/components/admin/compressed-image-input";
 import { createClient } from "@/lib/supabase/server";
 import { logout } from "../actions";
 import { createGaleri } from "./actions";
@@ -123,22 +124,11 @@ export default async function AdminGaleriPage() {
             />
           </div>
 
-          <div className="md:col-span-2">
-            <label htmlFor="image" className="mb-1 block text-sm font-medium">
-              Gambar Galeri
-            </label>
-            <input
-              id="image"
-              name="image"
-              type="file"
-              accept="image/*"
-              required
-              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
-            />
-            <p className="mt-1 text-xs text-black">
-              Upload gambar dokumentasi. Gunakan file JPG, PNG, atau WebP.
-            </p>
-          </div>
+          <CompressedImageInput
+            label="Gambar Galeri"
+            previewAlt="Preview gambar galeri"
+            required
+          />
 
           <label className="flex items-center gap-2 text-sm md:col-span-2">
             <input
