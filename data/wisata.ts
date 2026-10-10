@@ -12,9 +12,9 @@ export const wisataItems = [
       'Pesisir desa menawarkan pemandangan laut yang indah, udara segar, dan suasana yang cocok untuk wisata santai.',
   },
   {
-    title: 'Bawah Laut',
-    imageUrl: '/images/wisata/bawah-laut.JPG',
+    title: 'Hutan Mangrove',
+    imageUrl: '/images/hutan-mangrove.jpg',
     description:
-      'Keindahan bawah laut dapat menjadi potensi wisata unggulan untuk snorkeling, edukasi, dan promosi desa berbasis bahari.',
+      'Hutan mangrove menawarkan keindahan alami yang unik, habitat bagi berbagai spesies flora dan fauna, serta potensi wisata edukatif dan relaksasi.',
   },
 ];
