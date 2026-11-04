@@ -7,7 +7,7 @@ export const wisataItems = [
   },
   {
     title: 'Pantai',
-    imageUrl: '/images/dangar-rea.JPG',
+    imageUrl: '/images/dangar-rea.jpg',
     description:
       'Pesisir desa menawarkan pemandangan laut yang indah, udara segar, dan suasana yang cocok untuk wisata santai.',
   },

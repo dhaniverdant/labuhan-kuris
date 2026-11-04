@@ -1,13 +1,13 @@
 export const galeriItems = [
   {
-    title: 'Pemandangan Pantai',
-    description: 'Dokumentasi visual pantai desa yang menampilkan keindahan pesisir dan suasana alam.',
-    image: '/images/sejangan.JPG',
+    title: 'Perkampungan Nelayan',
+    description: 'Pintu masuk ke kawasan wisata bahari yang memiliki keindahan luar biasa.',
+    image: '/images/lab_terata.JPG',
   },
   {
-    title: 'Pulau Kecil',
-    description: 'Potret pulau kecil di sekitar desa sebagai daya tarik wisata bahari.',
-    image: '/images/dangar-rea.jpg',
+    title: 'Sunset',
+    description: 'Potret matahari terbenam di sekitar Teluk Saleh yang luar biasa indah.',
+    image: '/images/sunset_gamank.jpg',
   },
   {
     title: 'Sawah Desa',
