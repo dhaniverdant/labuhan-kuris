@@ -17,7 +17,7 @@ export default async function UmkmPage() {
       <PageHero
         eyebrow="UMKM"
         title="Produk Lokal Desa Labuhan Kuris"
-        description="Temukan beragam produk unggulan masyarakat Desa Labuhan Kuris, mulai dari madu, garam, hingga hasil olahan lokal lainnya."
+        description="Temukan beragam produk unggulan masyarakat Desa Labuhan Kuris."
       />
 
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">

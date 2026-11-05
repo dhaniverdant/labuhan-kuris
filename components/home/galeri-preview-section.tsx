@@ -16,7 +16,6 @@ export default function GaleriPreviewSection() {
           <GalleryCard
             key={item.title}
             title={item.title}
-            description={item.description}
             image={item.image}
           />
         ))}

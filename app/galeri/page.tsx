@@ -1,5 +1,5 @@
 import PageHero from "@/components/page-hero";
-import GalleryCard from "@/components/gallery-card";
+import GalleryViewer from "@/components/gallery-viewer";
 import { createClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -7,7 +7,6 @@ export const dynamic = "force-dynamic";
 type GaleriItem = {
   id: string;
   title: string;
-  description: string | null;
   image_path: string;
 };
 
@@ -16,7 +15,7 @@ export default async function GaleriPage() {
 
   const { data: galeriItems, error } = await supabase
     .from("galeri")
-    .select("id, title, description, image_path")
+    .select("id, title, image_path")
     .eq("published", true)
     .order("display_order", { ascending: true })
     .order("created_at", { ascending: false })
@@ -40,22 +39,15 @@ export default async function GaleriPage() {
         <h2 className="sr-only">Daftar galeri Desa Labuhan Kuris</h2>
 
         {items.length > 0 ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {items.map((item) => {
+          <GalleryViewer
+            items={items.map((item) => {
               const {
                 data: { publicUrl },
               } = supabase.storage.from("galeri").getPublicUrl(item.image_path);
 
-              return (
-                <GalleryCard
-                  key={item.id}
-                  title={item.title}
-                  description={item.description ?? ""}
-                  image={publicUrl}
-                />
-              );
+              return { id: item.id, title: item.title, image: publicUrl };
             })}
-          </div>
+          />
         ) : (
           <div className="rounded-3xl border border-dashed border-slate-300 bg-white px-6 py-16 text-center shadow-sm">
             <h2 className="text-lg font-semibold text-slate-900">

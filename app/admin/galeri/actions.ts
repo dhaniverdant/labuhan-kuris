@@ -34,7 +34,6 @@ export async function createGaleri(formData: FormData) {
   }
 
   const title = String(formData.get("title") ?? "").trim();
-  const description = String(formData.get("description") ?? "").trim();
   const displayOrder = Number(formData.get("display_order") ?? 0);
   const published = formData.get("published") === "on";
   const image = formData.get("image");
@@ -65,7 +64,6 @@ export async function createGaleri(formData: FormData) {
 
   const { error: insertError } = await supabase.from("galeri").insert({
     title,
-    description: description || null,
     image_path: imagePath,
     display_order: Number.isNaN(displayOrder) ? 0 : displayOrder,
     published,
@@ -143,7 +141,6 @@ export async function updateGaleri(formData: FormData) {
 
   const id = String(formData.get("id") ?? "");
   const title = String(formData.get("title") ?? "").trim();
-  const description = String(formData.get("description") ?? "").trim();
   const displayOrder = Number(formData.get("display_order") ?? 0);
   const published = formData.get("published") === "on";
   const image = formData.get("image");
@@ -194,7 +191,6 @@ export async function updateGaleri(formData: FormData) {
     .from("galeri")
     .update({
       title,
-      description: description || null,
       image_path: nextImagePath,
       display_order: Number.isNaN(displayOrder) ? 0 : displayOrder,
       published,

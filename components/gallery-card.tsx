@@ -2,13 +2,11 @@ import Image from "next/image";
 
 type GalleryCardProps = {
   title: string;
-  description: string;
   image: string;
 };
 
 export default function GalleryCard({
   title,
-  description,
   image,
 }: GalleryCardProps) {
   return (
@@ -24,8 +22,7 @@ export default function GalleryCard({
       </div>
 
       <div className="p-5">
-        <h3 className="text-xl font-bold">{title}</h3>
-        <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
+        <p className="text-base text-slate-800">{title}</p>
       </div>
     </article>
   );

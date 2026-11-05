@@ -12,7 +12,6 @@ export const dynamic = "force-dynamic";
 type GaleriItem = {
   id: string;
   title: string;
-  description: string | null;
   image_path: string;
   published: boolean;
   display_order: number;
@@ -41,7 +40,7 @@ export default async function AdminGaleriPage() {
 
   const { data: galeriList, error } = await supabase
     .from("galeri")
-    .select("id, title, description, image_path, published, display_order")
+    .select("id, title, image_path, published, display_order")
     .order("display_order", { ascending: true })
     .order("created_at", { ascending: false })
     .returns<GaleriItem[]>();
@@ -108,22 +107,6 @@ export default async function AdminGaleriPage() {
             />
           </div>
 
-          <div className="md:col-span-2">
-            <label
-              htmlFor="description"
-              className="mb-1 block text-sm font-medium"
-            >
-              Deskripsi
-            </label>
-            <textarea
-              id="description"
-              name="description"
-              rows={3}
-              placeholder="Tulis deskripsi singkat dokumentasi..."
-              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
-            />
-          </div>
-
           <CompressedImageInput
             label="Gambar Galeri"
             previewAlt="Preview gambar galeri"
@@ -162,7 +145,6 @@ export default async function AdminGaleriPage() {
                 <tr>
                   <th className="px-4 py-3">Gambar</th>
                   <th className="px-4 py-3">Judul</th>
-                  <th className="px-4 py-3">Deskripsi</th>
                   <th className="px-4 py-3">Publish</th>
                   <th className="px-4 py-3">Urutan</th>
                   <th className="px-4 py-3">Aksi</th>
@@ -197,7 +179,6 @@ export default async function AdminGaleriPage() {
                         </td>
 
                         <td className="px-4 py-3">{item.title}</td>
-                        <td className="px-4 py-3">{item.description ?? "-"}</td>
                         <td className="px-4 py-3">
                           {item.published ? "Ya" : "Tidak"}
                         </td>
@@ -223,7 +204,7 @@ export default async function AdminGaleriPage() {
                 ) : (
                   <tr>
                     <td
-                      colSpan={6}
+                      colSpan={5}
                       className="px-4 py-6 text-center text-black"
                     >
                       Belum ada data galeri.

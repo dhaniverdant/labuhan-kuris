@@ -137,6 +137,8 @@ Open [http://localhost:3000](http://localhost:3000).
 
 > Database setup examples for statistics and UMKM data, storage, and RLS policies are available in [`docs/database`](./docs/database). If gallery edits fail because a legacy trigger references `updatedAt`, run [`fix-galeri-updated-at-trigger.sql`](./docs/database/fix-galeri-updated-at-trigger.sql) in the Supabase SQL Editor. The application also expects compatible `admin_users`, `wisata`, `galeri`, and `site_contact` resources in Supabase. Admin credentials are managed through Supabase Auth and are not stored in this repository.
 
+Gallery items use titles and images without descriptions. After deploying this version, run [`remove-galeri-description.sql`](./docs/database/remove-galeri-description.sql) in the Supabase SQL Editor to permanently drop `public.galeri.description` and its existing values.
+
 ## Available commands
 
 | Command | Description |

@@ -14,7 +14,6 @@ type EditGaleriPageProps = {
 type GaleriItem = {
   id: string;
   title: string;
-  description: string | null;
   image_path: string;
   published: boolean;
   display_order: number;
@@ -44,7 +43,7 @@ export default async function EditGaleriPage({ params }: EditGaleriPageProps) {
 
   const { data: galeri, error } = await supabase
     .from("galeri")
-    .select("id, title, description, image_path, published, display_order")
+    .select("id, title, image_path, published, display_order")
     .eq("id", id)
     .single()
     .returns<GaleriItem>();
@@ -104,22 +103,6 @@ export default async function EditGaleriPage({ params }: EditGaleriPageProps) {
               name="display_order"
               type="number"
               defaultValue={galeri.display_order}
-              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
-            />
-          </div>
-
-          <div className="md:col-span-2">
-            <label
-              htmlFor="description"
-              className="mb-1 block text-sm font-medium"
-            >
-              Deskripsi
-            </label>
-            <textarea
-              id="description"
-              name="description"
-              rows={4}
-              defaultValue={galeri.description ?? ""}
               className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
             />
           </div>
