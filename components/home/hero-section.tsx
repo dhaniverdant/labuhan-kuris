@@ -15,22 +15,22 @@ const heroSlides: HeroSlide[] = [
     title: "Panorama Sejangan",
     subtitle:
       "Pemandangan alam pesisir yang memperlihatkan keindahan khas Desa Labuhan Kuris.",
-    desktopImage: "/images/sejangan.JPG",
-    mobileImage: "/images/mobile/sejangan-mobile.JPG",
+    desktopImage: "/images/dangar-rea.jpg",
+    mobileImage: "/images/mobile/dangar-rea-mobile.jpg",
   },
   {
     title: "Keindahan Sawah Desa",
     subtitle:
       "Sudut alam yang memperlihatkan kekayaan panorama pertanian Desa Labuhan Kuris.",
-    desktopImage: "/images/sawah.JPG",
-    mobileImage: "/images/mobile/sawah-mobile.JPG",
+    desktopImage: "/images/IMG_3824 - Copy.jpg",
+    mobileImage: "/images/mobile/sunset-mobile.jpg",
   },
   {
     title: "Pesona Dangar Rea",
     subtitle:
       "Lanskap alam yang memperkuat daya tarik wisata desa dan cocok ditampilkan di halaman utama.",
-    desktopImage: "/images/dangar-rea.jpg",
-    mobileImage: "/images/mobile/dangar-rea-mobile.jpg",
+    desktopImage: "/images/sejangan.JPG",
+    mobileImage: "/images/mobile/sejangan-mobile.JPG",
   },
 ];
 
@@ -119,12 +119,12 @@ export default function HeroSection() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-base leading-7 text-white/90 md:text-lg">
-            Desa dengan potensi wisata bahari yang memukau, mulai dari pulau
-            kecil, pantai, hingga keindahan bawah laut, serta kekuatan pertanian
-            padi, semangka, dan jagung yang menjadi kebanggaan masyarakat.
+            Desa dengan potensi unggulan di sektor kelautan, pariwisata, dan
+            pertanian, yang terus berkembang menuju masa depan yang mandiri dan
+            berkelanjutan.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
+          {/* <div className="mt-8 flex flex-wrap gap-4">
             <a
               href="#wisata"
               className="rounded-2xl bg-white px-6 py-3 font-semibold text-sky-700 shadow-lg transition hover:-translate-y-0.5"
@@ -137,7 +137,7 @@ export default function HeroSection() {
             >
               Lihat Profil Desa
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
 
