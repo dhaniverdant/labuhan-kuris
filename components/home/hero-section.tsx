@@ -4,33 +4,22 @@ import { getImageProps } from "next/image";
 import { useEffect, useState } from "react";
 
 type HeroSlide = {
-  title: string;
-  subtitle: string;
   desktopImage: string;
   mobileImage: string;
 };
 
 const heroSlides: HeroSlide[] = [
   {
-    title: "Panorama Sejangan",
-    subtitle:
-      "Pemandangan alam pesisir yang memperlihatkan keindahan khas Desa Labuhan Kuris.",
     desktopImage: "/images/dangar-rea.jpg",
     mobileImage: "/images/mobile/dangar-rea-mobile.jpg",
   },
   {
-    title: "Keindahan Sawah Desa",
-    subtitle:
-      "Sudut alam yang memperlihatkan kekayaan panorama pertanian Desa Labuhan Kuris.",
-    desktopImage: "/images/IMG_3824 - Copy.jpg",
+    desktopImage: "/images/sunset.jpg",
     mobileImage: "/images/mobile/sunset-mobile.jpg",
   },
   {
-    title: "Pesona Dangar Rea",
-    subtitle:
-      "Lanskap alam yang memperkuat daya tarik wisata desa dan cocok ditampilkan di halaman utama.",
-    desktopImage: "/images/sejangan.JPG",
-    mobileImage: "/images/mobile/sejangan-mobile.JPG",
+    desktopImage: "/images/sawah-desktop.jpg",
+    mobileImage: "/images/mobile/sawah-mobile.jpg",
   },
 ];
 
@@ -42,7 +31,7 @@ function HeroPicture({
   eager?: boolean;
 }) {
   const common = {
-    alt: slide.title,
+    alt: "",
     sizes: "100vw",
   };
 
@@ -75,7 +64,7 @@ function HeroPicture({
         loading={eager ? "eager" : "lazy"}
         fetchPriority={eager ? "high" : "auto"}
         className="h-full w-full object-cover"
-        alt={slide.title}
+        alt=""
       />
     </picture>
   );
@@ -114,11 +103,11 @@ export default function HeroSection() {
             Selamat Datang Di
           </p>
 
-          <h1 className="mt-3 text-3xl font-bold leading-none text-amber-200 sm:text-5xl md:text-7xl lg:text-7xl">
+          <h1 className="mt-2 text-3xl font-bold leading-none text-amber-200 sm:text-5xl md:text-7xl lg:text-7xl">
             Desa Labuhan Kuris
           </h1>
 
-          <p className="mt-6 max-w-2xl text-base leading-7 text-white/90 md:text-lg">
+          <p className="mt-2 max-w-2xl text-base leading-7 text-white/90 md:text-lg">
             Desa dengan potensi unggulan di sektor kelautan, pariwisata, dan
             pertanian, yang terus berkembang menuju masa depan yang mandiri dan
             berkelanjutan.
@@ -142,9 +131,9 @@ export default function HeroSection() {
       </div>
 
       <div className="absolute bottom-28 left-1/2 z-20 flex -translate-x-1/2 gap-3">
-        {heroSlides.map((slide, index) => (
+        {heroSlides.map((_, index) => (
           <button
-            key={slide.title}
+            key={index}
             type="button"
             onClick={() => setCurrentSlide(index)}
             className={`h-3 rounded-full transition-all ${
