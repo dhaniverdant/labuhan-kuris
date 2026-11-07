@@ -61,7 +61,7 @@ export default async function EditWisataPage({ params }: EditWisataPageProps) {
       </div>
 
       <section className="mt-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-        <form action={updateWisata} className="grid gap-4">
+        <form action={updateWisata} className="grid gap-4 md:grid-cols-2">
           <input type="hidden" name="id" value={wisata.id} />
 
           <div>
@@ -89,7 +89,7 @@ export default async function EditWisataPage({ params }: EditWisataPageProps) {
             />
           </div>
 
-          <div>
+          <div className="md:col-span-2">
             <label
               htmlFor="short_description"
               className="mb-1 block text-sm font-medium"
@@ -101,21 +101,6 @@ export default async function EditWisataPage({ params }: EditWisataPageProps) {
               name="short_description"
               rows={4}
               defaultValue={wisata.short_description ?? ""}
-              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="location"
-              className="mb-1 block text-sm font-medium"
-            >
-              Lokasi
-            </label>
-            <input
-              id="location"
-              name="location"
-              defaultValue={wisata.location ?? ""}
               className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
             />
           </div>
@@ -172,9 +157,26 @@ export default async function EditWisataPage({ params }: EditWisataPageProps) {
             />
           </div>
 
-          <CompressedImageInput />
+          <div>
+            <label
+              htmlFor="location"
+              className="mb-1 block text-sm font-medium"
+            >
+              Lokasi
+            </label>
+            <input
+              id="location"
+              name="location"
+              defaultValue={wisata.location ?? ""}
+              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm text-black outline-none focus:border-black"
+            />
+          </div>
 
-          <label className="flex items-center gap-2 text-sm text-black">
+          <div className="md:col-span-2">
+            <CompressedImageInput />
+          </div>
+
+          <label className="flex items-center gap-2 text-sm text-black md:col-span-2">
             <input
               type="checkbox"
               name="is_published"
@@ -184,7 +186,7 @@ export default async function EditWisataPage({ params }: EditWisataPageProps) {
             Publish ke halaman publik
           </label>
 
-          <div className="relative z-20 mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
+          <div className="relative z-20 mt-6 md:col-span-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
             <button
               type="submit"
               className="inline-flex min-h-11 items-center justify-center rounded-xl bg-black px-5 py-2 text-sm font-semibold text-white hover:bg-gray-800 active:bg-gray-900"
