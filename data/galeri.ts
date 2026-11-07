@@ -8,8 +8,8 @@ export const galeriItems = [
     image: '/images/sunset_gamank.jpg',
   },
   {
-    title: 'Sawah Desa',
-    image: '/images/sawah.JPG',
+    title: 'Aktivitas Pertanian',
+    image: '/images/aktivitas-pertanian.jpg',
   },
   {
     title: 'Perkebunan Semangka',
