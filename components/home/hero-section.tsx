@@ -19,7 +19,7 @@ const heroSlides: HeroSlide[] = [
   },
   {
     desktopImage: "/images/sawah-desktop.jpg",
-    mobileImage: "/images/mobile/sawah-mobile.jpg",
+    mobileImage: "/images/mobile/IMG_1405_landscape.jpg",
   },
 ];
 
